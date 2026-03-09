@@ -1,5 +1,5 @@
-import styles from './InfoBlock.module.scss';
+import styles from './GreetingBlock.module.scss';
 
-export const InfoBlock = () => {
+export const GreetingBlock = () => {
   return <div></div>;
 };

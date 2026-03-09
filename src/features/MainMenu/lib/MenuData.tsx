@@ -1,43 +1,39 @@
-import {MenuDataArrayType} from "./types";
-import {menuTheme} from "../ui/menuTheme";
-import Play from "../ui/images/play.svg"
-import Equip from "../ui/images/equip.svg"
-import Video from "../ui/images/video.svg"
-import Cost from "../ui/images/cost.svg"
-import Contact from "../ui/images/contact.svg"
+import { MenuDataArrayType } from './types';
+import PlaySvg from '../ui/images/play.svg';
+import EquipSvg from '../ui/images/equip.svg';
+import VideoSvg from '../ui/images/video.svg';
+import CostSvg from '../ui/images/cost.svg';
+import ContactSvg from '../ui/images/contact.svg';
 
-const {primaryIcon} = menuTheme;
-
-export const menuData:MenuDataArrayType = [
+export const menuData: MenuDataArrayType = [
   {
+    id: 1,
     label: 'Записаться',
-    key: '0',
-    MyIcon: Play,
-    dopStyle: primaryIcon,
-    link: '/record'
+    iconSrc: PlaySvg,
+    link: '/record',
   },
   {
+    id: 2,
     label: 'Экипировка',
-    key: '1',
-    MyIcon: Equip,
-    link: '/equip'
+    iconSrc: EquipSvg,
+    link: '/equip',
   },
   {
+    id: 3,
     label: 'Видео с игр',
-    key: '2',
-    MyIcon: Video,
-    link: '/video'
+    iconSrc: VideoSvg,
+    link: '/video',
   },
   {
+    id: 4,
     label: 'Стоимость',
-    key: '3',
-    MyIcon:  Cost,
-    link: '/cost'
+    iconSrc: CostSvg,
+    link: '/cost',
   },
   {
+    id: 5,
     label: 'Контакты',
-    key: '6',
-    MyIcon: Contact,
-    link: '/contact'
-  }
+    iconSrc: ContactSvg,
+    link: '/contact',
+  },
 ];
