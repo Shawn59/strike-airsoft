@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 31.63">
+  <defs>
+    <style>
+      .video_cls-1 {
+        stroke-width: 4px;
+      }
+
+      .video_cls-1, .video_cls-2 {
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .video_cls-2 {
+        fill: none;
+        stroke-width: 3px;
+      }
+
+      .video_cls-3 {
+        fill: #ccc;
+      }
+
+      .video_cls-3, .video_cls-4 {
+        stroke-width: 0px;
+      }
+
+      .video_cls-4 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <line class="video_cls-2" x1="8.5" y1="1.13" x2="16" y2="7.63"/>
+      <line class="video_cls-2" x1="23.5" y1="1.13" x2="16" y2="7.63"/>
+      <path class="video_cls-4" d="m0,6.63v21h32V6.63H0Zm28.9,17.85H3.1v-14.7h25.81v14.7Z"/>
+      <line class="video_cls-1" x1="16" y1="31.63" x2="16" y2="27.63"/>
+      <rect class="video_cls-4" x="4" y="28.63" width="24" height="3"/>
+      <path class="video_cls-3" d="m29,24.63H3v-15h26v15Z"/>
+    </g>
+  </g>
+</svg>

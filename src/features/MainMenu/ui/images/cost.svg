@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_Слой_2" data-name="Слой 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 37 37">
+  <defs>
+    <style>
+      .cost_cls-1 {
+        fill: #53450f;
+      }
+
+      .cost_cls-1, .cost_cls-2, .cost_cls-3 {
+        stroke-width: 0px;
+      }
+
+      .cost_cls-4 {
+        stroke-width: 3px;
+      }
+
+      .cost_cls-4, .cost_cls-5 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+      }
+
+      .cost_cls-5 {
+        stroke-width: 2px;
+      }
+
+      .cost_cls-2 {
+        fill: #fff;
+      }
+
+      .cost_cls-3 {
+        fill: #f2d844;
+      }
+    </style>
+  </defs>
+  <g id="_Слой_1-2" data-name="Слой 1">
+    <g>
+      <path class="cost_cls-3" d="m31.5,29.29c-1.07,1.4-2.13,2.81-3.2,4.21h-4.8V13.5h8v15.79Z"/>
+      <rect class="cost_cls-3" x="14.5" y="19.5" width="8" height="16"/>
+      <path class="cost_cls-3" d="m13.5,34.5c-2.67-1.33-5.33-2.67-8-4v-8h8v12Z"/>
+      <path class="cost_cls-1" d="m3.5,14.5c.72-2.31,2.54-8.34,8-11,6-2.92,13.67-.98,14,1,.11.66-.64,1.03-3,3-6.26,5.2-8.43,8.72-10,8-.36-.17-.82-.62-1-2-3,2.67-6,5.33-9,8-.03-1.63.11-4.14,1-7Z"/>
+      <circle class="cost_cls-4" cx="18.5" cy="18.5" r="17"/>
+      <path class="cost_cls-5" d="m2,23l9-9c.67,1,1.33,2,2,3,2.83-2.83,5.67-5.67,8.5-8.5"/>
+      <rect class="cost_cls-2" x="15.5" y="7.5" width="7" height="2"/>
+      <rect class="cost_cls-2" x="20.5" y="7.5" width="2" height="7"/>
+    </g>
+  </g>
+</svg>

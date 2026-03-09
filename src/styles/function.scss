@@ -1,0 +1,15 @@
+@use 'sass:math';
+@import "variables";
+
+// Функция для создания fluid-свойства
+// $min-value - значение при минимальной ширине (mobile)
+// $max-value - значение при максимальной ширине (desktop)
+// $min-width - минимальная ширина экрана (обычно 768px)
+// $max-width - максимальная ширина экрана (обычно 1440px)
+@function fluid($min-value, $max-value, $min-width: $breakpoint-mobile, $max-width: $breakpoint-mobile) {
+  $slope: math.div($max-value - $min-value, $max-width - $min-width);
+  $intercept: $min-value - $slope * $min-width;
+  $preferred: calc(#{$intercept} + #{$slope * 100vw});
+
+  @return clamp(#{$min-value}, #{$preferred}, #{$max-value});
+}
