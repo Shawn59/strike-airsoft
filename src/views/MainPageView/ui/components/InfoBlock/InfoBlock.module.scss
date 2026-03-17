@@ -1,0 +1,16 @@
+.greetingBlock {
+  background-image: url('/bg/backgroundMain.jpg');
+  background-position: center; /* центрирует картинку (по желанию) */
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  min-height: 400px;
+
+  .title {
+    @extend %h1-title-desk;
+  }
+
+  .longLogo {
+    margin-top: auto;
+  }
+}
