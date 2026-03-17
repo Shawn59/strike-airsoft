@@ -1,12 +1,15 @@
 import styles from './MenuDesk.module.scss';
-import { menuData } from '@/features/MainMenu/lib/MenuData';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { IMenu } from '@/features/MainMenu/ui/components/Menu.types';
+import { FC } from 'react';
 
-export const MenuDesk = () => {
+export const MenuDesk: FC<IMenu> = ({ data }) => {
+  if (!data) return;
+
   return (
     <div className={styles.menuDesk}>
-      {menuData.map((item) => {
+      {data.map((item) => {
         const { label, id, iconSrc, link } = item;
 
         return (

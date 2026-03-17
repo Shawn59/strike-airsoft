@@ -1,36 +1,53 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './MenuMobile.module.scss';
-import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import { Box, Button, SwipeableDrawer, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import type { IMenu } from '@/features/MainMenu/ui/components/Menu.types';
+import Link from 'next/link';
+import Image from 'next/image';
 
-export const MenuMobile = () => {
+export const MenuMobile: FC<IMenu> = ({ data }) => {
   const [open, setOpen] = React.useState(false);
 
-  const toggleDrawer = (newOpen: boolean) => () => {
-    setOpen(newOpen);
+  if (!data) return;
+
+  const openMenu = () => {
+    setOpen(true);
+  };
+
+  const closeMenu = () => {
+    setOpen(false);
   };
 
   return (
     <div className={styles.menuMobile}>
-      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
+      <Button onClick={openMenu} className={styles.btn}>
+        <MenuIcon className={styles.icon} />
+      </Button>
 
-      <Drawer open={open} onClose={toggleDrawer(false)}>
-        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+      <SwipeableDrawer open={open} onClose={closeMenu} className={styles.menuMobileContent}>
+        <Box sx={{ width: 220 }} role="presentation" onClick={closeMenu}>
           <List>
-            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-              <ListItem key={text} disablePadding>
-                <ListItemButton>
-                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                  <ListItemText primary={text} />
+            <Link className={styles.logoContainer} href={'/'}>
+              <Image src={'/logo.svg'} alt={'логотип кс'} width={56} height={56} />
+            </Link>
+
+            {data.map((item) => (
+              <Link key={item.id} href={item.link}>
+                <ListItemButton className={styles.item}>
+                  <ListItemIcon className={styles.itemIcon}>
+                    {<Image src={item.iconSrc} alt={''} width={40} height={40} />}
+                  </ListItemIcon>
+
+                  <ListItemText className={styles.label} primary={item.label} />
                 </ListItemButton>
-              </ListItem>
+              </Link>
             ))}
           </List>
         </Box>
-      </Drawer>
+      </SwipeableDrawer>
     </div>
   );
 };
