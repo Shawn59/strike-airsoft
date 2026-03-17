@@ -1,11 +1,11 @@
-import { MenuDataArrayType } from './types';
+import type { IMenuData } from './types';
 import PlaySvg from '../ui/images/play.svg';
 import EquipSvg from '../ui/images/equip.svg';
 import VideoSvg from '../ui/images/video.svg';
 import CostSvg from '../ui/images/cost.svg';
 import ContactSvg from '../ui/images/contact.svg';
 
-export const menuData: MenuDataArrayType = [
+export const menuData: IMenuData[] = [
   {
     id: 1,
     label: 'Записаться',

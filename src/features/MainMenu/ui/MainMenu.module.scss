@@ -2,19 +2,23 @@
 
 .mainMenu {
   z-index: 999;
-  max-width: 100% !important;
-  min-width: 100% !important;
-  width: 100% !important;
   position: fixed;
   top: 0;
   background: $black-80-bg;
   height: 72px;
   display: flex;
+  width: 100%;
 
   @include tablet {
-    justify-content: space-between;
+    display: grid;
+    width: 100%;
     align-items: center;
-    padding: 0 20px 0 0;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0 20px;
+  }
+
+  @include mobile {
+    height: 48px;
   }
 
   .logoContainer {
@@ -24,8 +28,59 @@
     justify-content: center;
     transition: all ease 0.3s;
 
+    @include tablet {
+      display: none;
+    }
+
     &:hover {
       background: $black-bg;
+    }
+  }
+
+  .logoContainerMob {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all ease 0.3s;
+
+    @include desktop {
+      display: none;
+    }
+
+    @include mobile {
+      padding: 0 8px;
+
+      img {
+        width: 120px;
+        height: 46px;
+      }
+    }
+  }
+
+  .phoneContainerMob {
+    color: $orange-1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    justify-content: flex-end;
+
+    @include desktop {
+      display: none;
+    }
+
+    @include mobile {
+      font-size: 12px;
+
+      span {
+        display: none;
+      }
+    }
+
+    .phoneIcon {
+      @include mobile {
+        font-size: 22px;
+      }
     }
   }
 
@@ -38,10 +93,8 @@
   }
 
   .menuContainerMob {
-    display: none;
-
-    @include tablet {
-      display: block;
+    @include desktop {
+      display: none;
     }
   }
 }
