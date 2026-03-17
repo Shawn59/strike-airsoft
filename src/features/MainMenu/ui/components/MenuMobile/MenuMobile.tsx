@@ -1,39 +1,35 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Drawer, Menu } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
-import 'antd/dist/reset.css'; // или другой способ подключения стилей antd
 import styles from './MenuMobile.module.scss';
+import { Box, Button, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
 
 export const MenuMobile = () => {
-  // Состояние для видимости Drawer
-  const [visible, setVisible] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
-  // Функции открытия/закрытия
-  const showDrawer = () => setVisible(true);
-  const onClose = () => setVisible(false);
-
-  // Пункты меню
-  const menuItems = [
-    { key: '1', label: 'Главная' },
-    { key: '2', label: 'О нас' },
-    { key: '3', label: 'Услуги' },
-    { key: '4', label: 'Контакты' },
-  ];
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
 
   return (
     <div className={styles.menuMobile}>
-      <Button type="primary" icon={<MenuOutlined />} onClick={showDrawer} className={styles.btn} />
+      <Button onClick={toggleDrawer(true)}>Open drawer</Button>
 
-      <Drawer
-        title="Навигация"
-        placement="left" // можно также 'right'
-        onClose={onClose}
-        open={visible}
-      >
-        {/* Меню внутри Drawer */}
-        <Menu mode="inline" items={menuItems} onClick={onClose} style={{ border: 'none' }} />
+      <Drawer open={open} onClose={toggleDrawer(false)}>
+        <Box sx={{ width: 250 }} role="presentation" onClick={toggleDrawer(false)}>
+          <List>
+            {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+              <ListItem key={text} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </Drawer>
     </div>
   );

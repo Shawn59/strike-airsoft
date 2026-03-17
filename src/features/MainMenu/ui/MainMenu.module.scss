@@ -9,15 +9,12 @@
   top: 0;
   background: $black-80-bg;
   height: 72px;
+  display: flex;
 
-  :global(.ant-layout-sider-children) {
-    display: flex;
-
-    @include tablet {
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 20px 0 0;
-    }
+  @include tablet {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 0;
   }
 
   .logoContainer {
@@ -32,55 +29,15 @@
     }
   }
 
-  .itemLinksDesk {
+  .menuContainerDesk {
     display: flex;
 
     @include tablet {
       display: none;
     }
-
-    .itemContainer {
-      display: flex;
-      gap: 8px;
-
-      &:hover {
-        .itemLabel {
-          opacity: 1;
-        }
-
-        .itemIcon {
-          img {
-            transform: scale3d(1.2, 1.2, 1);
-          }
-        }
-      }
-
-      .itemLabel {
-        font-size: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: $text-primary;
-        opacity: 0.7;
-      }
-
-      .itemIcon {
-        width: 72px;
-        height: 72px;
-
-        img {
-          transition: transform 0.3s ease;
-          width: auto;
-          height: auto;
-          object-fit: cover;
-          font-size: 36px;
-          margin: 18px;
-        }
-      }
-    }
   }
 
-  .burgerMenuMob {
+  .menuContainerMob {
     display: none;
 
     @include tablet {
