@@ -11,11 +11,19 @@
     gap: 48px;
     justify-content: space-between;
 
+    @include mobile {
+      flex-direction: column;
+    }
+
     .leftBlock {
       width: 34%;
     }
 
     .rightBlock {
+      @include mobile {
+        order: -1;
+      }
+
       .title {
         @extend %h1-title-desk;
       }
