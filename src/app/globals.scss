@@ -1,19 +1,25 @@
 @font-face {
   font-family: 'CSFont';
-  src: local('CSFont'), url('../fonts/CSFont.woff2') format('woff2');
+  src:
+    local('CSFont'),
+    url('../fonts/CSFont.woff2') format('woff2');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'MontserratFont';
-  src: local('MontserratFont'), url('../fonts/MontserratFont.woff2') format('woff2');
+  src:
+    local('MontserratFont'),
+    url('../fonts/MontserratFont.woff2') format('woff2');
   font-display: swap;
 }
 
 html,
 body {
-  max-width: 100vw;
-  overflow-x: hidden;
+  max-width: 100dvw;
+  min-width: 360px;
+  /*overflow-x: hidden;*/
+  /* height: 100%;*/
 }
 
 body {

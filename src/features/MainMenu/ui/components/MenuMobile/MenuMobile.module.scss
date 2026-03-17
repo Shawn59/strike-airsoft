@@ -1,0 +1,13 @@
+.menuMobile {
+  .btn {
+    background: $black-bg !important;
+
+    &:hover {
+      background: $black-bg;
+    }
+
+    &:active {
+      background: $black-bg;
+    }
+  }
+}

@@ -1,13 +1,16 @@
 'use server';
 
 import { MainMenu } from '@/features/MainMenu';
+import styles from './MainLayout.module.scss';
+import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
+import { MenuMobile } from '@/features/MainMenu/ui/components/MenuMobile/MenuMobile';
 
 export const MainLayout = async ({ children }) => {
   return (
-    <main>
+    <main className={styles.mainLayout}>
       <MainMenu />
 
-      <div>{children}</div>
+      <div className={styles.content}>{children}</div>
     </main>
   );
 };

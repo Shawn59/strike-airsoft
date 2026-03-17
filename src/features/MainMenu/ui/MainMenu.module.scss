@@ -1,0 +1,47 @@
+//@use './src/styles/variables' as *;
+
+.mainMenu {
+  z-index: 999;
+  max-width: 100% !important;
+  min-width: 100% !important;
+  width: 100% !important;
+  position: fixed;
+  top: 0;
+  background: $black-80-bg;
+  height: 72px;
+  display: flex;
+
+  @include tablet {
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px 0 0;
+  }
+
+  .logoContainer {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all ease 0.3s;
+
+    &:hover {
+      background: $black-bg;
+    }
+  }
+
+  .menuContainerDesk {
+    display: flex;
+
+    @include tablet {
+      display: none;
+    }
+  }
+
+  .menuContainerMob {
+    display: none;
+
+    @include tablet {
+      display: block;
+    }
+  }
+}

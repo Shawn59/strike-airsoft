@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { MainPageView } from '@/views';
 
 export const metadata: Metadata = {
-  title: 'Страйкбол | Airsoft | CounterStrikeBall | Пермь',
+  title: 'CounterStrikeBall | Страйкбол | Airsoft | Пермь',
   description: 'CounterStrikeBall — пермский клуб страйкбола и игровая площадка для фанатов CS: GO.',
   other: {
     'yandex-verification': 'fb4be9cee0de33fc',

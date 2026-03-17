@@ -1,0 +1,25 @@
+@use 'src/styles/variables' as *;
+@use 'src/styles/mixins' as *;
+
+%h1-title-desk {
+  color: $text-primary;
+  text-shadow:
+    rgb(236, 103, 24) -1px 0px,
+    rgb(236, 103, 24) 0px 1px,
+    rgb(236, 103, 24) 1px 0px,
+    rgb(236, 103, 24) 0px -1px;
+  letter-spacing: 4px;
+  margin: 0 0 48px;
+  line-height: 0.58;
+  font-family: $font-CSFont;
+  text-align: left;
+  font-size: 94px;
+
+  @include tablet {
+    font-size: 68px;
+  }
+
+  @include mobile {
+    font-size: 48px;
+  }
+}

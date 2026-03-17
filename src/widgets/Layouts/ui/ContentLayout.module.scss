@@ -1,0 +1,22 @@
+.contentLayout {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+
+  .contentContainer {
+    //width: 1360px;
+    width: 100%;
+    padding: 48px 80px;
+    display: flex;
+    flex-direction: column;
+
+    @include tablet {
+      padding: 32px;
+    }
+
+    @include mobile {
+      padding: 24px 16px;
+    }
+  }
+}
