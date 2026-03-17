@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { Button, Drawer, Menu } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import 'antd/dist/reset.css'; // или другой способ подключения стилей antd
+import styles from './MenuMobile.module.scss';
 
-export const MainMenuMobile = () => {
+export const MenuMobile = () => {
   // Состояние для видимости Drawer
   const [visible, setVisible] = useState(false);
 
@@ -22,34 +23,17 @@ export const MainMenuMobile = () => {
   ];
 
   return (
-    <div>
-      {/* Кнопка-бургер, видимая на мобильных */}
-      <Button
-        type="primary"
-        icon={<MenuOutlined />}
-        onClick={showDrawer}
-        className="burger-button"
-        styles={{ marginTop: '72px' }}
-      >
-        Меню
-      </Button>
+    <div className={styles.menuMobile}>
+      <Button type="primary" icon={<MenuOutlined />} onClick={showDrawer} className={styles.btn} />
 
-      {/* Выдвижная панель */}
       <Drawer
         title="Навигация"
         placement="left" // можно также 'right'
         onClose={onClose}
         open={visible}
-        /*  width={250} // ширина панели*/
-        /*bodyStyle={{ padding: 0 }} // убираем лишние отступы*/
       >
         {/* Меню внутри Drawer */}
-        <Menu
-          mode="inline"
-          items={menuItems}
-          onClick={onClose} // закрывать меню после клика (опционально)
-          style={{ border: 'none' }}
-        />
+        <Menu mode="inline" items={menuItems} onClick={onClose} style={{ border: 'none' }} />
       </Drawer>
     </div>
   );

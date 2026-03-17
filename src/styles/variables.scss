@@ -1,14 +1,12 @@
 //шрифты
-$font-regular: 'Nunito-Regular';
-$font-medium: 'Nunito-Medium';
+$font-MontserratFont: 'MontserratFont';
+$font-CSFont: 'CSFont';
+
+$zIndexMax: 999999;
 
 // Брейкпоинты
+$breakpoint-desktop: 1200px;
 $breakpoint-mobile: 768px;
-$breakpoint-desktop: 1440px;
-
-// Минимальная и максимальная ширина экрана, между которыми работает fluid
-$fluid-min: $breakpoint-mobile;
-$fluid-max: $breakpoint-desktop;
 
 //палитра
 $text-default: #3a3a3a;
@@ -21,7 +19,7 @@ $primary-bg: #ffff;
 $secondary-bg: #f5f5f5;
 $blue-bg: #0000ff1a;
 $black-bg: #000000;
-$black-80-bg: rgba(0, 0, 0, 0.8);
+$black-80-bg: #333538;
 
 $orange-1: #ed7117;
 $orange-2: rgba(199, 88, 8, 0.45);

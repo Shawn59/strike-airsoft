@@ -1,6 +1,6 @@
-import type { Metadata } from 'next';
 import './globals.scss';
 import { MainLayout } from '@widgets';
+import { StyledEngineProvider } from '@mui/material';
 
 export default function RootLayout({
   children,
@@ -10,7 +10,9 @@ export default function RootLayout({
   return (
     <html lang="ru">
       <body>
-        <MainLayout>{children}</MainLayout>
+        <StyledEngineProvider injectFirst>
+          <MainLayout>{children}</MainLayout>
+        </StyledEngineProvider>
       </body>
     </html>
   );

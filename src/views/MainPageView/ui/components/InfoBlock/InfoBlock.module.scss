@@ -1,16 +1,34 @@
-.greetingBlock {
-  background-image: url('/bg/backgroundMain.jpg');
+.infoBlock {
+  background-image: url('/bg/backgroundInfo.jpg');
   background-position: center; /* центрирует картинку (по желанию) */
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;
-  min-height: 400px;
+  min-height: 800px;
 
-  .title {
-    @extend %h1-title-desk;
-  }
+  .blockContainer {
+    display: flex;
+    gap: 48px;
+    justify-content: space-between;
 
-  .longLogo {
-    margin-top: auto;
+    .leftBlock {
+      width: 34%;
+    }
+
+    .rightBlock {
+      .title {
+        @extend %h1-title-desk;
+      }
+
+      .description {
+        font-size: 1.5vw;
+        color: white;
+        font-family: $font-MontserratFont;
+
+        p {
+          margin: 20px 0;
+        }
+      }
+    }
   }
 }

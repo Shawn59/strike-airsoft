@@ -1,25 +1,27 @@
-import styles from './GreetingBlock.module.scss';
+import styles from './InfoBlock.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
-import Image from 'next/image';
+import { carouselData, descriptionData } from '@/views/MainPageView/lib/InfoBlockData';
+import { CarouselWrapper } from '@/shared/Car';
 
-export const GreetingBlock = () => {
+export const InfoBlock = () => {
   return (
-    <div className={styles.greetingBlock}>
+    <div className={styles.infoBlock}>
       <ContentLayout>
-        <h1 className={styles.title}>
-          Играй
-          <br />
-          вживую!
-        </h1>
+        <div className={styles.blockContainer}>
+          <div className={styles.leftBlock}>
+            <CarouselWrapper />
+          </div>
 
-        <Image
-          src={'/main/bigLogo.svg'}
-          className={styles.longLogo}
-          alt={'логотип кс 2'}
-          width={455}
-          height={68}
-          priority
-        />
+          <div className={styles.rightBlock}>
+            <h1 className={styles.title}>{'О нас'}</h1>
+
+            <div className={styles.description}>
+              {descriptionData.map((value, index) => {
+                return <p key={index}>{value}</p>;
+              })}
+            </div>
+          </div>
+        </div>
       </ContentLayout>
     </div>
   );
