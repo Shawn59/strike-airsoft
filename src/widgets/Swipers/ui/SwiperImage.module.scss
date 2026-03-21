@@ -1,6 +1,6 @@
 .swiperContainer {
-  width: 600px;
-  height: 600px;
+  width: 700px;
+  height: 700px;
   overflow: hidden;
   border-radius: 12px;
 
@@ -11,6 +11,8 @@
   }
 
   .slide {
+    cursor: pointer;
+
     @include tablet {
       width: 260px;
       height: 286px;

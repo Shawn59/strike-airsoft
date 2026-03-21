@@ -14,6 +14,23 @@ const nextConfig: NextConfig = {
       //return `@use "variables" as *;\n` + `@use "mixins" as *;\n` + `@use "functions" as *;\n` + content;
     },*/
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '*.photo.2gis.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.mds.yandex.net',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+    formats: ['image/avif', 'image/webp'],
+  },
   typescript: {
     ignoreBuildErrors: true,
   },

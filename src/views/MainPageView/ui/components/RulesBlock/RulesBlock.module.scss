@@ -1,0 +1,55 @@
+.rulesBlock {
+  .blockContainer {
+    .title {
+      @extend %h1-title;
+      text-align: center;
+    }
+
+    .cardContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+.ruleCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $orange-1;
+  padding: 16px 8px;
+  border-radius: 24px;
+
+  .cardTitle {
+    @extend %h2-title;
+    color: #350404;
+    text-align: center;
+  }
+
+  .content {
+    color: $text-primary;
+    font-size: 20px;
+    font-family: $font-MontserratFont;
+    line-height: 28px;
+
+    @include tablet {
+      line-height: 20px;
+    }
+
+    li {
+      padding: 12px 8px;
+      margin-left: 30px;
+      font-size: 22px;
+
+      @include tablet {
+        padding: 8px;
+        line-height: 20px;
+        font-size: 16px;
+      }
+    }
+  }
+}

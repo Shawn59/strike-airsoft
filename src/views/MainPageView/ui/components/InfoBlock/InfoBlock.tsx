@@ -3,6 +3,7 @@ import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import { descriptionData } from '@/views/MainPageView/lib/InfoBlockData';
 import { SwiperImage } from '@/widgets/Swipers/ui/SwiperImage';
 import { carouselData } from '@/views/MainPageView/lib/InfoBlockData';
+import { DynamicModalImage } from '@/features/Modals/ui/ModalImage/DynamicModalImage';
 
 export const InfoBlock = () => {
   return (
@@ -22,6 +23,8 @@ export const InfoBlock = () => {
           </div>
         </div>
       </ContentLayout>
+
+      <DynamicModalImage />
     </div>
   );
 };

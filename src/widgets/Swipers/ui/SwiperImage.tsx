@@ -4,9 +4,20 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import styles from './SwiperImage.module.scss';
+import { FC } from 'react';
+import type { ISwiperImage } from '@/widgets/Swipers/ui/SwiperImage.types';
+import { useAppDispatch } from '@/store/hooks';
+import { actionOpenModalImage } from '@/store/modalImageSlice/modalImageSlice';
 
-export const SwiperImage = ({ data }) => {
+export const SwiperImage: FC<ISwiperImage> = ({ data }) => {
   if (!data) return;
+
+  const dispatch = useAppDispatch();
+
+  const handleClick = (e) => {
+    const { img } = e.currentTarget.dataset;
+    dispatch(actionOpenModalImage({ src: img }));
+  };
 
   return (
     <div className={styles.swiperContainer}>
@@ -31,7 +42,7 @@ export const SwiperImage = ({ data }) => {
         }}
       >
         {data.map((slide) => (
-          <SwiperSlide key={slide.id} className={styles.slide}>
+          <SwiperSlide key={slide.id} className={styles.slide} data-img={slide.img} onClick={handleClick}>
             <div className={styles.slideContent}>
               <Image fill src={slide.img} alt={slide.label} priority={slide.id === 1} />
             </div>
