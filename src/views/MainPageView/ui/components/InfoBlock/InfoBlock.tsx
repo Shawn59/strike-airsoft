@@ -1,16 +1,15 @@
 import styles from './InfoBlock.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
-import { carouselData, descriptionData } from '@/views/MainPageView/lib/InfoBlockData';
-import { CarouselWrapper } from '@/shared/Car';
+import { descriptionData } from '@/views/MainPageView/lib/InfoBlockData';
+import { SwiperImage } from '@/widgets/Swipers/ui/SwiperImage';
+import { carouselData } from '@/views/MainPageView/lib/InfoBlockData';
 
 export const InfoBlock = () => {
   return (
     <div className={styles.infoBlock}>
       <ContentLayout>
         <div className={styles.blockContainer}>
-          <div className={styles.leftBlock}>
-            <CarouselWrapper />
-          </div>
+          <div className={styles.leftBlock}>{<SwiperImage data={carouselData} />}</div>
 
           <div className={styles.rightBlock}>
             <h1 className={styles.title}>{'О нас'}</h1>

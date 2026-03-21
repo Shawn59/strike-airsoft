@@ -23,3 +23,17 @@
     font-size: 48px;
   }
 }
+
+%description-desk {
+  font-size: 20px;
+  color: $text-primary;
+  font-family: $font-MontserratFont;
+
+  @include tablet {
+    font-size: 18px;
+  }
+
+  @include mobile {
+    font-size: 14px;
+  }
+}
