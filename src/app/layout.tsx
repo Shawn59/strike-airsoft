@@ -1,4 +1,7 @@
 import './globals.scss';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 import { MainLayout } from '@widgets';
 import { StyledEngineProvider } from '@mui/material';
 

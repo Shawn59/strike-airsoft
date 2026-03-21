@@ -1,0 +1,46 @@
+.swiperContainer {
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 12px;
+
+  @include tablet {
+    width: 400px;
+    height: 400px;
+  }
+
+  .slideContent {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    aspect-ratio: 1;
+
+    img {
+      object-fit: cover;
+    }
+  }
+}
+
+/* Кастомные точки */
+:global(.swiper-pagination-bullet) {
+  width: 12px;
+  height: 12px;
+  background-color: #ff9800;
+  opacity: 0.5;
+  transition: all 0.2s;
+}
+
+:global(.swiper-pagination-bullet-active) {
+  width: 14px;
+  height: 14px;
+  background-color: #f57c00;
+  opacity: 1;
+}
+
+:global(.swiper-pagination-bullet) {
+  margin: 0 6px !important;
+}
+
+:global(.swiper-pagination) {
+  bottom: 10px !important;
+}
