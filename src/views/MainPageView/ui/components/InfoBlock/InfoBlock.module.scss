@@ -1,14 +1,4 @@
 .infoBlock {
-  background-image: url('/bg/backgroundInfo.jpg');
-  background-position: center; /* центрирует картинку (по желанию) */
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 800px;
-
-  @include tablet {
-    height: 720px;
-  }
-
   .blockContainer {
     display: flex;
     gap: 48px;
@@ -31,7 +21,11 @@
       align-self: center;
 
       .title {
-        @extend %h1-title-desk;
+        @extend %h1-title;
+
+        @include tablet {
+          text-align: center;
+        }
       }
 
       .description {

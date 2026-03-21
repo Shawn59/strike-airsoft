@@ -1,30 +1,36 @@
-import styles from './InfoBlock.module.scss';
+import styles from './RulesBlock.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
-import { descriptionData } from '@/views/MainPageView/lib/InfoBlockData';
-import { SwiperImage } from '@/widgets/Swipers/ui/SwiperImage';
-import { carouselData } from '@/views/MainPageView/lib/InfoBlockData';
-import { DynamicModalImage } from '@/features/Modals/ui/ModalImage/DynamicModalImage';
+import { rulesBlockData } from '@/views/MainPageView/lib/rulesBlockData';
+import React from 'react';
 
-export const InfoBlock = () => {
+const RuleCard = React.memo(({ data }) => {
   return (
-    <div className={styles.infoBlock}>
+    <div className={styles.ruleCard}>
+      <h2 className={styles.cardTitle}>{data.title}</h2>
+
+      <ul className={styles.content}>
+        {data.list.map((rule) => {
+          return <li key={rule.id}>{rule.text}</li>;
+        })}
+      </ul>
+    </div>
+  );
+});
+
+export const RulesBlock = () => {
+  return (
+    <div className={styles.rulesBlock}>
       <ContentLayout>
         <div className={styles.blockContainer}>
-          <div className={styles.leftBlock}>{<SwiperImage data={carouselData} />}</div>
+          <h1 className={styles.title}>{'Правила игры'}</h1>
 
-          <div className={styles.rightBlock}>
-            <h1 className={styles.title}>{'О нас'}</h1>
-
-            <div className={styles.description}>
-              {descriptionData.map((value, index) => {
-                return <p key={index}>{value}</p>;
-              })}
-            </div>
+          <div className={styles.cardContainer}>
+            {rulesBlockData.map((item) => {
+              return <RuleCard key={item.title} data={item} />;
+            })}
           </div>
         </div>
       </ContentLayout>
-
-      <DynamicModalImage />
     </div>
   );
 };

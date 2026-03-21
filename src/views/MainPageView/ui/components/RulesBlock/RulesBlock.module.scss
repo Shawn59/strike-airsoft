@@ -1,45 +1,54 @@
-.infoBlock {
-  height: 800px;
+.rulesBlock {
+  .blockContainer {
+    .title {
+      @extend %h1-title;
+      text-align: center;
+    }
 
-  @include tablet {
-    height: 720px;
+    .cardContainer {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+
+      @include tablet {
+        grid-template-columns: 1fr;
+      }
+    }
+  }
+}
+
+.ruleCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid $orange-1;
+  padding: 16px 8px;
+  border-radius: 24px;
+
+  .cardTitle {
+    @extend %h2-title;
+    color: #350404;
+    text-align: center;
   }
 
-  .blockContainer {
-    display: flex;
-    gap: 48px;
-    justify-content: space-between;
+  .content {
+    color: $text-primary;
+    font-size: 20px;
+    font-family: $font-MontserratFont;
+    line-height: 28px;
 
     @include tablet {
-      flex-direction: column;
-      gap: 24px;
+      line-height: 20px;
     }
 
-    .leftBlock {
+    li {
+      padding: 12px 8px;
+      margin-left: 30px;
+      font-size: 22px;
+
       @include tablet {
-        order: 1;
-        display: flex;
-        justify-content: center;
-      }
-    }
-
-    .rightBlock {
-      align-self: center;
-
-      .title {
-        @extend %h1-title-desk;
-      }
-
-      .description {
-        @extend %description-desk;
-
-        p {
-          margin: 20px 0;
-
-          @include tablet {
-            margin: 12px 0;
-          }
-        }
+        padding: 8px;
+        line-height: 20px;
+        font-size: 16px;
       }
     }
   }
