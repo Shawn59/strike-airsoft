@@ -1,0 +1,46 @@
+.infoBlock {
+  height: 800px;
+
+  @include tablet {
+    height: 720px;
+  }
+
+  .blockContainer {
+    display: flex;
+    gap: 48px;
+    justify-content: space-between;
+
+    @include tablet {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .leftBlock {
+      @include tablet {
+        order: 1;
+        display: flex;
+        justify-content: center;
+      }
+    }
+
+    .rightBlock {
+      align-self: center;
+
+      .title {
+        @extend %h1-title-desk;
+      }
+
+      .description {
+        @extend %description-desk;
+
+        p {
+          margin: 20px 0;
+
+          @include tablet {
+            margin: 12px 0;
+          }
+        }
+      }
+    }
+  }
+}
