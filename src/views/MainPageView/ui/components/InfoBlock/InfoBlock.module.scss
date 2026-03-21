@@ -5,6 +5,10 @@
   background-repeat: no-repeat;
   height: 800px;
 
+  @include tablet {
+    height: 720px;
+  }
+
   .blockContainer {
     display: flex;
     gap: 48px;
@@ -12,11 +16,14 @@
 
     @include tablet {
       flex-direction: column;
+      gap: 24px;
     }
 
     .leftBlock {
       @include tablet {
         order: 1;
+        display: flex;
+        justify-content: center;
       }
     }
 
@@ -32,6 +39,10 @@
 
         p {
           margin: 20px 0;
+
+          @include tablet {
+            margin: 12px 0;
+          }
         }
       }
     }

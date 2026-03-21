@@ -12,7 +12,6 @@ export const SwiperImage = ({ data }) => {
     <div className={styles.swiperContainer}>
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
-        slidesPerView={1}
         autoplay={{
           delay: 3000,
           disableOnInteraction: false, // не отключать автоплей после ручного переключения
@@ -20,9 +19,19 @@ export const SwiperImage = ({ data }) => {
         }}
         pagination={{ clickable: true }}
         loop={true}
+        spaceBetween={12}
+        breakpoints={{
+          320: {
+            slidesPerView: 'auto',
+          },
+          1200: {
+            slidesPerView: 1, // один слайд на весь экран
+            loop: true, // свободная прокрутка с инерцией
+          },
+        }}
       >
         {data.map((slide) => (
-          <SwiperSlide key={slide.id}>
+          <SwiperSlide key={slide.id} className={styles.slide}>
             <div className={styles.slideContent}>
               <Image fill src={slide.img} alt={slide.label} priority={slide.id === 1} />
             </div>
