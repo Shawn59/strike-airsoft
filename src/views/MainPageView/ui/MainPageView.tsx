@@ -4,6 +4,7 @@ import { GreetingBlock } from '@/views/MainPageView/ui/components/GreetingBlock/
 import { InfoBlock } from '@/views/MainPageView/ui/components/InfoBlock/InfoBlock';
 import styles from './MainPageView.module.scss';
 import { RulesBlock } from '@/views/MainPageView/ui/components/RulesBlock/RulesBlock';
+import { ReviewsBlock } from '@/views/MainPageView/ui/components/ReviewsBlock/ui/ReviewsBlock';
 
 export const MainPageView = async () => {
   return (
@@ -14,6 +15,8 @@ export const MainPageView = async () => {
         <InfoBlock />
 
         <RulesBlock />
+
+        <ReviewsBlock />
       </div>
     </>
   );

@@ -1,12 +1,15 @@
 'use client';
 import { configureStore } from '@reduxjs/toolkit';
 import modalImageSlice from '@/store/modalImageSlice/modalImageSlice';
+import { reviewsSlice } from '@/store/reviewsSlice/reviewsSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       modalImageState: modalImageSlice,
+      [reviewsSlice.reducerPath]: reviewsSlice.reducer,
     },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(reviewsSlice.middleware),
   });
 };
 

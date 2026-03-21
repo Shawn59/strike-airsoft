@@ -3,9 +3,8 @@ import { FC, useEffect } from 'react';
 import { useFetchReviewsMutation } from '@/store/reviewsSlice/reviewsSlice';
 import { ReviewCard } from '@/widgets/ReviewCard/ui/ReviewCard';
 
-export const Reviews: FC = () => {
+export const ReviewsBlock: FC = () => {
   const [trigger, { data: reviews }] = useFetchReviewsMutation();
-  if (!Array.isArray(reviews)) return;
 
   console.log('reviews = ', reviews);
 
@@ -14,10 +13,12 @@ export const Reviews: FC = () => {
   }, [trigger]);
 
   return (
-    <div>
-      {reviews.map((item) => {
-        return <ReviewCard data={item} />;
-      })}
-    </div>
+    reviews && (
+      <div>
+        {reviews?.map((item) => {
+          return <ReviewCard key={item.id} data={item} />;
+        })}
+      </div>
+    )
   );
 };
