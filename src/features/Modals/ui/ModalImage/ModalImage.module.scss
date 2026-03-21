@@ -1,0 +1,29 @@
+.modalImage {
+  :global(.MuiPaper-root) {
+    width: 800px;
+    height: 100%;
+    max-width: none;
+    max-height: 800px;
+
+    @include mobile {
+      width: 400px;
+      max-height: 400px;
+    }
+  }
+
+  .closeBtn {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    z-index: 1;
+
+    .closeIcon {
+      color: $orange-1;
+      font-size: 30px;
+    }
+  }
+
+  .image {
+    object-fit: cover;
+  }
+}

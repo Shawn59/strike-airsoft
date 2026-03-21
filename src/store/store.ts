@@ -1,20 +1,17 @@
+'use client';
 import { configureStore } from '@reduxjs/toolkit';
-import userReducer from './userSlice/user.slice';
-import userProfileReducer from './userProfileModalSlice/userProfileModal.slice';
-import snackbarReducer from './snackbarSlice/snackbarSlice.slice';
-import { userStorageMiddleware } from './middleware/userStorageMiddleware';
-import { socketMiddleware } from './middleware/socketMiddleware';
-import socketSlice from './socketSlice/socket.slice';
+import modalImageSlice from '@/store/modalImageSlice/modalImageSlice';
 
-export const store = configureStore({
-  reducer: {
-    user: userReducer,
-    userProfile: userProfileReducer,
-    snackbar: snackbarReducer,
-    socket: socketSlice,
-  },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(socketMiddleware).concat(userStorageMiddleware),
-});
+export const makeStore = () => {
+  return configureStore({
+    reducer: {
+      modalImageState: modalImageSlice,
+    },
+  });
+};
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+// Infer the type of makeStore
+export type AppStore = ReturnType<typeof makeStore>;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<AppStore['getState']>;
+export type AppDispatch = AppStore['dispatch'];

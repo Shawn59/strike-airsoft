@@ -28,14 +28,14 @@
     }
 
     .rightBlock {
+      align-self: center;
+
       .title {
         @extend %h1-title-desk;
-        transition: all 0.2s ease-in-out;
       }
 
       .description {
         @extend %description-desk;
-        transition: all 0.2s ease-in-out;
 
         p {
           margin: 20px 0;
