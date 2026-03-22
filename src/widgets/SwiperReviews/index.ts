@@ -1,1 +1,1 @@
-export * from './ui/SwiperImage';
+export * from './ui/SwiperReviews';

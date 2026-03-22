@@ -35,12 +35,12 @@ export const reviewsSlice = createApi({
       query: () => ({
         url: '/',
         body: {
-          key: process.env.NEXT_PUBLIC_SMARTWIDGETS_API_KEY,
+          key: ['e30edc8aaa8d8ce261647db5fd7ff22e'],
         },
         method: 'post',
       }),
       transformResponse: (response: IReviewerResponse) => {
-        return response.data.e30edc8aaa8d8ce261647db5fd7ff22e.items.slice(0, 20).map((item) => ({
+        return response.data.e30edc8aaa8d8ce261647db5fd7ff22e.items.slice(0, 12).map((item) => ({
           id: item.id,
           rating: item.rating,
           text: item.text,

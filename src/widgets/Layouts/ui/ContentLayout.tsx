@@ -1,9 +1,10 @@
 import styles from './ContentLayout.module.scss';
+import classNames from 'classnames';
 
-export const ContentLayout = async ({ children }) => {
+export const ContentLayout = async ({ isSwiper, children }) => {
   return (
     <div className={styles.contentLayout}>
-      <div className={styles.contentContainer}>{children}</div>
+      <div className={classNames(styles.contentContainer, isSwiper && styles.isSwiper)}>{children}</div>
     </div>
   );
 };

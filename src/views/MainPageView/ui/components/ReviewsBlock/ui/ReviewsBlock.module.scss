@@ -1,2 +1,6 @@
 .reviewsBlock {
+  .title {
+    @extend %h1-title;
+    text-align: center;
+  }
 }

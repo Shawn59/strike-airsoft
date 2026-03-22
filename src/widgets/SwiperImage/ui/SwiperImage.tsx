@@ -5,7 +5,7 @@ import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import styles from './SwiperImage.module.scss';
 import { FC } from 'react';
-import type { ISwiperImage } from '@/widgets/Swipers/ui/SwiperImage.types';
+import type { ISwiperImage } from '@/widgets/SwiperImage/ui/SwiperImage.types';
 import { useAppDispatch } from '@/store/hooks';
 import { actionOpenModalImage } from '@/store/modalImageSlice/modalImageSlice';
 
