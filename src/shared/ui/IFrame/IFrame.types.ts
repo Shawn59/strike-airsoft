@@ -1,8 +1,4 @@
-import {FC} from "react";
-
-interface IFrameType {
+interface IFrame {
   src: string;
-  onLoad?: VoidFunction
+  onLoad?: VoidFunction;
 }
-
-export type IFrameFC = FC<IFrameType>

@@ -24,7 +24,7 @@ export const SwiperReviews = () => {
       <Swiper
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{
-          delay: 223000,
+          delay: 3000,
           disableOnInteraction: false, // не отключать автоплей после ручного переключения
           pauseOnMouseEnter: true, // пауза при наведении мыши
         }}
