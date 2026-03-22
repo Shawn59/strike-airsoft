@@ -3,7 +3,7 @@ import { MainPageView } from '@/views';
 
 export const metadata: Metadata = {
   title: 'CounterStrikeBall - Запись',
-  description: 'CounterStrikeBall — записаться на игру',
+  description: 'Записаться на игру',
 };
 
 export default MainPageView;

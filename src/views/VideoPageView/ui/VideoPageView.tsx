@@ -1,6 +1,5 @@
 import styles from './VideoPageView.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
-import { IFrame } from '@/shared';
 import { SwiperVideo } from '@/widgets/SwiperVideo/SwiperVideo';
 
 export const VideoPageView = async () => {
