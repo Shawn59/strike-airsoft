@@ -23,7 +23,7 @@ export const MainMenu = async () => {
       </div>
 
       <Link className={styles.logoContainerMob} href={'/'}>
-        <Image src={'/main/bigLogo.svg'} alt={'логотип кс'} width={200} height={60} />
+        <Image src={'/bigLogo.svg'} alt={'логотип кс'} width={200} height={60} />
       </Link>
 
       <a href={'tel:79026425957'} className={styles.phoneContainerMob}>

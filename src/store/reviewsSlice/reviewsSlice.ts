@@ -40,7 +40,7 @@ export const reviewsSlice = createApi({
         method: 'post',
       }),
       transformResponse: (response: IReviewerResponse) => {
-        return response.data.e30edc8aaa8d8ce261647db5fd7ff22e.items.slice(0, 12).map((item) => ({
+        return response.data.e30edc8aaa8d8ce261647db5fd7ff22e.items.slice(0, 20).map((item) => ({
           id: item.id,
           rating: item.rating,
           text: item.text,
