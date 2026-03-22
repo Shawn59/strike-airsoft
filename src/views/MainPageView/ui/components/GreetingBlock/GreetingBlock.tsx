@@ -12,14 +12,7 @@ export const GreetingBlock = () => {
           вживую!
         </h1>
 
-        <Image
-          src={'/main/bigLogo.svg'}
-          className={styles.longLogo}
-          alt={'логотип кс 2'}
-          width={455}
-          height={68}
-          priority
-        />
+        <Image src={'/bigLogo.svg'} className={styles.longLogo} alt={'логотип кс 2'} width={455} height={68} priority />
       </ContentLayout>
     </div>
   );
