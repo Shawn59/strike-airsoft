@@ -1,0 +1,34 @@
+.swiperContainer {
+  .slide {
+    width: 700px;
+    height: 500px;
+
+    @include tablet {
+      width: 400px;
+      height: 300px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+:global(.swiper-pagination) {
+  display: none;
+}
+
+:global(.swiper-button-prev) {
+  color: $orange-1;
+  background: $primary-bg;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+:global(.swiper-button-next) {
+  color: $orange-1;
+  background: $primary-bg;
+  border-radius: 50%;
+  padding: 10px;
+}

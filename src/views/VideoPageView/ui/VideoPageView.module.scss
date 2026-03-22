@@ -1,0 +1,23 @@
+.videoPageView {
+  background-image: url('/bg/backgroundVideoAndCostCalculator.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: calc(100vh - 72px);
+
+  @include tablet {
+    min-height: calc(100vh - 46px);
+  }
+
+  .title {
+    @extend %h1-title;
+    text-align: center;
+  }
+
+  .content {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 60px;
+  }
+}
