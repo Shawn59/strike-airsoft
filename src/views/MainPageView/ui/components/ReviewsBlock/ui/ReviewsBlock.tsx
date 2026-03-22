@@ -1,24 +1,18 @@
-'use client';
-import { FC, useEffect } from 'react';
-import { useFetchReviewsMutation } from '@/store/reviewsSlice/reviewsSlice';
-import { ReviewCard } from '@/widgets/ReviewCard/ui/ReviewCard';
+import React, { FC } from 'react';
+import styles from './ReviewsBlock.module.scss';
+import { DynamicSwiperReviews } from '@/widgets/SwiperReviews/ui/DynamicSwiperReviews';
+import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 
 export const ReviewsBlock: FC = () => {
-  const [trigger, { data: reviews }] = useFetchReviewsMutation();
-
-  console.log('reviews = ', reviews);
-
-  useEffect(() => {
-    trigger();
-  }, [trigger]);
-
   return (
-    reviews && (
-      <div>
-        {reviews?.map((item) => {
-          return <ReviewCard key={item.id} data={item} />;
-        })}
-      </div>
-    )
+    <div className={styles.reviewsBlock}>
+      <ContentLayout isSwiper>
+        <div>
+          <h1 className={styles.title}>{'Отзывы '}</h1>
+
+          <DynamicSwiperReviews />
+        </div>
+      </ContentLayout>
+    </div>
   );
 };
