@@ -7,9 +7,19 @@ import { IFrame } from '@/shared';
 
 const videoList = [
   'https://vk.com/video_ext.php?oid=-220256056&id=456239018',
-  'https://www.youtube.com/embed/KgAJ0DgrUGI',
-  'https://www.youtube.com/embed/13wvp1-3G0w',
-  'https://www.youtube.com/embed/mLTDMikQAo8',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456240259',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456240258',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456240257',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456240205',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456240233',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456240021',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456239897',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456239881',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456239880',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456239833',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456239790',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456239752',
+  'https://vk.com/clip_ext.php?oid=-220256056&id=456239650',
 ];
 
 export const SwiperVideo = () => {
