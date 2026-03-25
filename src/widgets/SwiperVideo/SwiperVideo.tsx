@@ -2,7 +2,7 @@
 
 import styles from './SwiperVideo.module.scss';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Pagination, Navigation } from 'swiper/modules';
 import { IFrame } from '@/shared';
 
 const videoList = [
@@ -25,12 +25,7 @@ const videoList = [
 export const SwiperVideo = () => {
   return (
     <Swiper
-      modules={[Autoplay, Pagination, Navigation]}
-      autoplay={{
-        delay: 233000,
-        disableOnInteraction: false, // не отключать автоплей после ручного переключения
-        pauseOnMouseEnter: true, // пауза при наведении мыши
-      }}
+      modules={[Pagination, Navigation]}
       pagination={{ clickable: true }}
       navigation
       slidesPerView={'auto'}
