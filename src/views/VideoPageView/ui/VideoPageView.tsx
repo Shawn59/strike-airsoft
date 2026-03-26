@@ -8,11 +8,9 @@ export const VideoPageView = async () => {
       <ContentLayout>
         <h1 className={styles.title}>{'Видео с игр'}</h1>
 
-        <div>
+        <div className={styles.content}>
           <SwiperVideo />
         </div>
-
-        <div className={styles.content}></div>
       </ContentLayout>
     </div>
   );

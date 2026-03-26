@@ -1,3 +1,1 @@
-import {MapContact} from "./ui/MapContact";
-
-export {MapContact};
+export * from './ui/MapContact';
