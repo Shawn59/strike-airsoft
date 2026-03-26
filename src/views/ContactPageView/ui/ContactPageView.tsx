@@ -3,6 +3,7 @@ import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import { MapContact } from '@/features/MapContact';
 import { contactData } from '@/views/ContactPageView/lib/contactData';
 import PhoneIcon from '@mui/icons-material/PhoneAndroid';
+import Image from 'next/image';
 
 export const ContactPageView = () => {
   return (
@@ -21,24 +22,12 @@ export const ContactPageView = () => {
 
               <span>{'+7 (902) 642 59 57'}</span>
             </a>
-            {/*  <Link href={'https://vk.com/strikeball59css'}>
-              <Flex style={flex} justify={'flex-start'}>
-                <Icon style={icon} component={Vk} />
-                Вконтакте
-              </Flex>
-            </Link>
-            <Link href={'https://www.tiktok.com/@counterstrikeball_perm?_t=ZN-8sx16OkPacw&_r=1'}>
-              <Flex style={flex} justify={'flex-start'}>
-                <TikTokFilled style={icon} />
-                TikTok
-              </Flex>
-            </Link>
-            <Link href={'https://www.youtube.com/@CounterStrikeBall_Perm'}>
-              <Flex style={lastFlex} justify={'flex-start'}>
-                <YoutubeFilled style={icon} />
-                Youtube
-              </Flex>
-            </Link>*/}
+
+            <a href={'https://vk.com/strikeball59css'} target={'_blank'} className={styles.vkContainer}>
+              <Image src={'/vk.svg'} className={styles.vkIcon} width={50} height={50} alt={'вк'} />
+
+              <span>{'Вконтакте'}</span>
+            </a>
           </div>
         </div>
       </ContentLayout>
