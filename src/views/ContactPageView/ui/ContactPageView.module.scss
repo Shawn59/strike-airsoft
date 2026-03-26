@@ -6,7 +6,7 @@
   min-height: calc(100vh - 72px);
 
   @include tablet {
-    min-height: calc(100vh - 46px);
+    min-height: calc(100vh - 48px);
   }
 
   .title {
@@ -15,18 +15,39 @@
   }
 
   .content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 50dvh;
-    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+
+    @include mobile {
+      flex-direction: column;
+    }
 
     .mapContainer {
+      width: 60dvw;
+      max-width: 1000px;
+      height: 80dvh;
+      min-height: 400px;
+      max-height: 800px;
+
+      @include tablet {
+        width: 50dvw;
+        height: 60dvh;
+        max-height: 6800px;
+      }
+
+      @include mobile {
+        width: 90dvw;
+      }
     }
 
     .contactsContainer {
+      flex-shrink: 0;
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      gap: 40px;
 
       .phoneContainer {
         color: $text-primary;
@@ -34,11 +55,44 @@
         align-items: center;
         gap: 4px;
         justify-content: flex-end;
-        font-size: 32px;
+        font-size: 42px;
+        font-family: $font-MontserratFont;
+
+        @include tablet {
+          font-size: 28px;
+        }
 
         .phoneIcon {
           font-size: 50px;
           color: $orange-1;
+
+          @include tablet {
+            font-size: 40px;
+          }
+        }
+      }
+
+      .vkContainer {
+        color: $text-primary;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: flex-end;
+        font-size: 42px;
+        font-family: $font-MontserratFont;
+
+        @include tablet {
+          font-size: 28px;
+        }
+
+        .vkIcon {
+          font-size: 50px;
+          color: $orange-1;
+
+          @include tablet {
+            width: 40px;
+            height: 40px;
+          }
         }
       }
     }

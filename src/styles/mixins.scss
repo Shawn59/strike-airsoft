@@ -9,14 +9,14 @@
 
 // Миксин для десктопов (мин. ширина)
 @mixin tablet {
-  @media (max-width: #{$breakpoint-desktop - 1px}) {
+  @media (max-width: #{$breakpoint-desktop - 0.1px}) {
     @content;
   }
 }
 
 // Миксин для мобильных устройств (макс. ширина)
 @mixin mobile {
-  @media (max-width: #{$breakpoint-mobile - 1px}) {
+  @media (max-width: #{$breakpoint-mobile - 0.1px}) {
     @content;
   }
 }
