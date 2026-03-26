@@ -1,0 +1,46 @@
+.contactPageView {
+  background-image: url('/bg/backgroundVideoAndCostCalculator.jpg');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: calc(100vh - 72px);
+
+  @include tablet {
+    min-height: calc(100vh - 46px);
+  }
+
+  .title {
+    @extend %h1-title;
+    text-align: center;
+  }
+
+  .content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 50dvh;
+    gap: 20px;
+
+    .mapContainer {
+    }
+
+    .contactsContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .phoneContainer {
+        color: $text-primary;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        justify-content: flex-end;
+        font-size: 32px;
+
+        .phoneIcon {
+          font-size: 50px;
+          color: $orange-1;
+        }
+      }
+    }
+  }
+}
