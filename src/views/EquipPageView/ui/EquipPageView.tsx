@@ -2,6 +2,7 @@ import styles from './EquipPageView.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import Image from 'next/image';
 import classNames from 'classnames';
+import { Button } from '@/shared/ui/Button/Button';
 
 export const EquipPageView = async () => {
   return (
@@ -44,6 +45,10 @@ export const EquipPageView = async () => {
               </ul>
             </div>
           </div>
+        </div>
+
+        <div className={styles.btnRecordContainer}>
+          <Button className={styles.btnRecord} label={'Записаться'} href={'/record'} />
         </div>
       </ContentLayout>
     </div>

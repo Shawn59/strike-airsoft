@@ -5,7 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "migrate:dev": "npx prisma migrate dev",
+    "migrate:prod": "npx prisma migrate deploy",
+    "seed": "npx prisma db seed",
+    "reset": "npx prisma migrate reset",
+    "generate": "npx prisma generate"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -20,7 +25,8 @@
     "react-dom": "19.2.3",
     "react-redux": "^9.2.0",
     "sass": "^1.97.3",
-    "swiper": "^12.1.2"
+    "swiper": "^12.1.2",
+    "@prisma/client": "^6.4.1"
   },
   "devDependencies": {
     "@types/node": "^20",
@@ -28,6 +34,7 @@
     "@types/react-dom": "^19",
     "classnames": "^2.5.1",
     "prettier": "^3.8.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "prisma": "^6.4.1"
   }
 }
