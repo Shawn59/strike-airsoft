@@ -5,7 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { FC } from 'react';
 import type { IMaskInputTypes } from './MaskInput.types';
-import { FormHelperText } from '@mui/material';
+import { FormHelperText, OutlinedInput } from '@mui/material';
 
 interface CustomProps {
   onChange: (event: { target: { name: string; value: string } }) => void;
@@ -34,10 +34,11 @@ export const MaskInput: FC<IMaskInputTypes> = ({
   ...rest
 }) => {
   return (
-    <FormControl variant="standard" error={error}>
+    <FormControl variant="outlined" error={error}>
       <InputLabel>{label}</InputLabel>
 
-      <Input
+      <OutlinedInput
+        label={label}
         inputComponent={TextMaskCustom as any}
         inputProps={{
           mask: mask,

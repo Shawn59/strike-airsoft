@@ -1,57 +1,44 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { Dayjs } from 'dayjs';
 import { constants } from '@/constants/constants';
 
-export interface IReviewerData {
-  id: string;
-  rating: number;
-  text: string;
-  authorName: string;
-  img: string;
-  from: '2GIS' | 'Яндекс Карты';
+interface RecordSliceState {
+  typeGame;
+  name: string;
+  phone: string;
+  countPeople: string;
+  rent: 0 | 1 | boolean;
+  date?: Dayjs;
+  time?: Dayjs;
 }
 
-interface IReviewerResponse {
-  data: {
-    e30edc8aaa8d8ce261647db5fd7ff22e: {
-      items: {
-        id: string;
-        rating: number;
-        text: string;
-        author_name: string;
-        author_img: string;
-        from: '2GIS' | 'Яндекс Карты';
-      }[];
-    };
-  };
-}
-
-export const reviewsSlice = createApi({
-  reducerPath: constants.REDUX_SLICE.reviewsSlice,
+export const recordSlice = createApi({
+  reducerPath: constants.REDUX_SLICE.recordSlice,
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.smartwidgets.ru',
+    baseUrl: '/api/record',
   }),
   endpoints: (build) => ({
-    fetchReviews: build.mutation<IReviewerData[], void>({
-      query: () => ({
-        url: '/',
-        body: {
-          key: ['e30edc8aaa8d8ce261647db5fd7ff22e'],
-        },
-        method: 'post',
-      }),
-      transformResponse: (response: IReviewerResponse) => {
-        return response.data.e30edc8aaa8d8ce261647db5fd7ff22e.items.slice(0, 20).map((item) => ({
-          id: item.id,
-          rating: item.rating,
-          text: item.text,
-          authorName: item.author_name,
-          img: item.author_img,
-          from: item.from,
-        }));
+    fetchRecord: build.mutation({
+      async queryFn(_arg: RecordSliceState, _queryApi, _extraOptions, baseQuery) {
+        console.log('_arg = ', _arg);
+        const resultData = { ..._arg };
+
+        /* const asyncData = await getAsyncData({ name, data });*/
+
+        return baseQuery({
+          url: '',
+          body: {
+            data: {
+              ...resultData,
+              /* time: asyncData.time && `${asyncData.time.format('HH')}:00`,
+              date: asyncData.date && asyncData.date.format('DD.MM.YYYY'),*/
+            },
+          },
+          method: 'POST',
+        });
       },
     }),
   }),
 });
 
-export const { useFetchReviewsMutation } = reviewsSlice;
-export default reviewsSlice.reducer;
+export const { useFetchRecordMutation } = recordSlice;

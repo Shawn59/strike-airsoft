@@ -49,6 +49,28 @@
   }
 }
 
+%h3-title {
+  color: $orange-3;
+  text-shadow:
+    black -1px 0px,
+    black 0px 1px,
+    black 1px 0px,
+    black 0px -1px;
+  letter-spacing: 4px;
+  line-height: 0.58;
+  font-family: $font-CSFont;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
+  font-size: 42px;
+
+  @include tablet {
+  }
+
+  @include mobile {
+    font-size: 32px;
+  }
+}
+
 %description-desk {
   font-size: 20px;
   color: $text-primary;

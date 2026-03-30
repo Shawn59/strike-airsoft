@@ -1,40 +1,49 @@
 {
-  "name": "my-app",
+  "name": "ks-arena",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "migrate:dev": "npx prisma migrate dev",
+    "migrate:dev": "npx prisma migrate dev --name init",
     "migrate:prod": "npx prisma migrate deploy",
     "seed": "npx prisma db seed",
     "reset": "npx prisma migrate reset",
-    "generate": "npx prisma generate"
+    "generate": "npx prisma generate --schema=prisma/schema/schema.prisma"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@hookform/resolvers": "^5.2.2",
     "@mr-igorinni/react-yandex-maps-fork": "^1.2.6-react19",
     "@mui/icons-material": "^7.3.9",
     "@mui/material": "^7.3.9",
+    "@mui/x-date-pickers": "^8.27.2",
+    "@prisma/client": "^6.4.1",
     "@reduxjs/toolkit": "^2.11.2",
     "compression-webpack-plugin": "^12.0.0",
+    "dayjs": "^1.11.20",
     "next": "16.1.6",
+    "nodemailer": "^8.0.4",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-hook-form": "^7.72.0",
+    "react-imask": "^7.6.1",
+    "react-input-mask": "^2.0.4",
     "react-redux": "^9.2.0",
     "sass": "^1.97.3",
     "swiper": "^12.1.2",
-    "@prisma/client": "^6.4.1"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^7.0.11",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "classnames": "^2.5.1",
     "prettier": "^3.8.1",
-    "typescript": "^5",
-    "prisma": "^6.4.1"
+    "prisma": "^6.4.1",
+    "typescript": "^5"
   }
 }
