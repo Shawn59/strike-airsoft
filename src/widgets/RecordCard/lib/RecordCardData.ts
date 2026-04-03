@@ -3,7 +3,7 @@ import { IRecordCardDataItem } from '@/widgets/RecordCard/ui/RecordCard.types';
 export const RecordCardList: IRecordCardDataItem[] = [
   {
     id: 1,
-    type: 'free',
+    typeGame: 'free',
     src: '/record/freePlay.jpg',
     title: '«Одиночная» открытая игра',
     description:
@@ -13,7 +13,7 @@ export const RecordCardList: IRecordCardDataItem[] = [
   },
   {
     id: 2,
-    type: 'friend',
+    typeGame: 'friend',
     src: '/record/friendPlay.jpg',
     title: '«Многопользовательская» игра с друзьями',
     description:

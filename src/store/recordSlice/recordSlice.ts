@@ -1,15 +1,16 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { Dayjs } from 'dayjs';
 import { constants } from '@/constants/constants';
 
-interface RecordSliceState {
-  typeGame: string;
+export interface RecordSliceState {
+  typeGame: 'free' | 'friend';
   name: string;
   phone: string;
   countPeople: number;
-  rent: 0 | 1 | boolean;
-  date?: Dayjs;
-  time?: Dayjs;
+  rent?: boolean;
+  /** DD.MM.YYYY */
+  date?: string;
+  /** HH:mm */
+  time?: string;
 }
 
 export const recordSlice = createApi({

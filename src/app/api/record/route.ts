@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
       to: cred.user,
       subject: 'Запись на игру',
       text: `
-        Тип игры: ${typeGame === 'freePlay' ? 'открытая' : 'с друзьями'}\n
+        Тип игры: ${typeGame === 'free' || typeGame === 'freePlay' ? 'открытая' : 'с друзьями'}\n
         Имя или название команды: ${nameCommand}\n
         Телефон: +7${phone}\n
         Количество человек: ${countPeople}\n

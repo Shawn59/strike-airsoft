@@ -31,10 +31,8 @@ export const MaskInput: FC<IMaskInputTypes> = ({
   error,
   helperText,
   inputModeIsNumeric,
-  value,
   ...rest
 }) => {
-  console.log('value = ', value);
   return (
     <FormControl variant="outlined" error={error}>
       <InputLabel>{label}</InputLabel>
@@ -46,7 +44,6 @@ export const MaskInput: FC<IMaskInputTypes> = ({
           mask: mask,
           definitions: definitions,
           inputMode: inputModeIsNumeric ? 'numeric' : 'text',
-          value: value,
         }}
         {...rest}
       />
