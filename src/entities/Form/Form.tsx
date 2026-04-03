@@ -3,19 +3,20 @@
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { TextField, Box, Grid, Typography, Paper } from '@mui/material';
-import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
+import { TextField } from '@mui/material';
+import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import InputMask from 'react-input-mask';
-import dayjs, { Dayjs } from 'dayjs';
 import styles from './Form.module.scss';
-import { useAppDispatch } from '@/store/hooks';
 import { Button, MaskInput } from '@/shared';
 import { useFetchRecordMutation } from '@/store/recordSlice/recordSlice';
 import { getNextSundayDate } from '@/utils/getNextSundayDate';
 
 const formSchema = z.object({
   name: z.string().min(1, 'Поле ФИО обязательно'),
+  phone: z
+    .string()
+    .min(1, 'Укажите телефон')
+    .regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите номер полностью в формате +7 (xxx) xxx-xx-xx'),
   countPeople: z
     .number({
       required_error: 'Поле обязательно',
@@ -26,20 +27,8 @@ const formSchema = z.object({
 });
 
 type FormData = z.infer<typeof formSchema>;
-/*// Define the form schema with Zod
-const formSchema = z.object({
-  fullName: z.string().min(2, 'Full name must be at least 2 characters'),
-  quantity: z
-    .number({ invalid_type_error: 'Quantity must be a number' })
-    .min(1, 'Quantity must be at least 1')
-    .max(100, 'Quantity cannot exceed 100'),
-  dateTime: z.date({ required_error: 'Date and time are required' }),
-  phone: z.string().regex(/^\(\d{3}\)-\d{3}-\d{4}$/, 'Phone must be in format (xxx)-xxx-xxxx'),
-});
 
-type FormData = z.infer<typeof formSchema>;*/
-
-export const Form = () => {
+export const Form = ({ typeGame }) => {
   const [triggerCount] = useFetchRecordMutation();
 
   const {
@@ -48,18 +37,16 @@ export const Form = () => {
     reset,
     control,
     formState: { errors },
-  } = useForm({
+  } = useForm<FormData>({
     defaultValues: {
       name: '',
       phone: '',
-      countPeople: '',
+      countPeople: '' as unknown as FormData['countPeople'],
     },
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data) => {
-    //  dispatch(actionSetUser({ ...data, id: uuid() }));
-
+  const onSubmit = (data: FormData) => {
     console.log('data = ', data);
     triggerCount(data);
 
@@ -82,20 +69,23 @@ export const Form = () => {
           variant={'outlined'}
         />
 
-        <MaskInput
-          {...register('phone', {
-            required: 'Введите телефон',
-            minLength: { value: 17, message: 'некорректный номер' },
-          })}
-          label={'Телефон'}
-          mask="+7 (000) 000-00-00"
-          definitions={{
-            '#': /[1-9]/,
-          }}
-          error={!!errors.phone}
-          helperText={errors.phone?.message}
-          inputModeIsNumeric={'numeric'}
-          placeholder={'+7 (xxx) xxx-xx-xx'}
+        <Controller
+          name="phone"
+          control={control}
+          render={({ field, fieldState }) => (
+            <MaskInput
+              {...field}
+              label={'Телефон'}
+              mask="+7 (000) 000-00-00"
+              definitions={{
+                '#': /[1-9]/,
+              }}
+              error={!!errors.phone}
+              helperText={errors.phone?.message}
+              inputModeIsNumeric={'numeric'}
+              placeholder={'+7 (xxx) xxx-xx-xx'}
+            />
+          )}
         />
 
         <Controller

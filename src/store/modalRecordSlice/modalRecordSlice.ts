@@ -1,26 +1,26 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Dayjs } from 'dayjs';
+import { constants } from '@/constants/constants';
 
-interface ModalRecordState {
+interface IModalRecordState {
   typeGame?: 'free' | 'friend' | '';
   open: boolean;
 }
 
-const initialState: ModalRecordState = {
+const initialState: IModalRecordState = {
   open: false,
   typeGame: '',
 };
 
-const formSlice = createSlice({
-  name: 'form',
+const modalRecordSlice = createSlice({
+  name: constants.REDUX_SLICE.modalRecordSlice,
   initialState,
   reducers: {
-    setModalRecordData: (state, action: PayloadAction<Partial<ModalRecordState>>) => {
+    setModalRecordData: (state, action: PayloadAction<Partial<IModalRecordState>>) => {
       return { ...state, ...action.payload };
     },
     resetModalRecordData: () => initialState,
   },
 });
 
-export const { setFormData, resetForm } = formSlice.actions;
-export default formSlice.reducer;
+export const { setModalRecordData, resetModalRecordData } = modalRecordSlice.actions;
+export default modalRecordSlice.reducer;

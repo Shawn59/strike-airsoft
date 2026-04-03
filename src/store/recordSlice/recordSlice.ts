@@ -3,10 +3,10 @@ import { Dayjs } from 'dayjs';
 import { constants } from '@/constants/constants';
 
 interface RecordSliceState {
-  typeGame;
+  typeGame: string;
   name: string;
   phone: string;
-  countPeople: string;
+  countPeople: number;
   rent: 0 | 1 | boolean;
   date?: Dayjs;
   time?: Dayjs;

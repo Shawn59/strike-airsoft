@@ -3,11 +3,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import modalImageSlice from '@/store/modalImageSlice/modalImageSlice';
 import { reviewsSlice } from '@/store/reviewsSlice/reviewsSlice';
 import { recordSlice } from '@/store/recordSlice/recordSlice';
+import modalRecordSlice from '@/store/modalRecordSlice/modalRecordSlice';
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
       modalImageState: modalImageSlice,
+      modalRecordSlice: modalRecordSlice,
       [reviewsSlice.reducerPath]: reviewsSlice.reducer,
       [recordSlice.reducerPath]: recordSlice.reducer,
     },

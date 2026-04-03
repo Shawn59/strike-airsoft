@@ -1,12 +1,20 @@
 'use client';
+
 import { Dialog, DialogActions, DialogContent, DialogTitle, IconButton } from '@mui/material';
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './RecordModal.module.scss';
 import CloseIcon from '@mui/icons-material/Close';
 import { Form } from '@/entities/Form/Form';
+import { Button } from '@/shared';
+import { useAppDispatch } from '@/store/hooks';
+import { IRecordCardDataItem } from '@/widgets/RecordCard/ui/RecordCard.types';
 
-export const RecordModal = React.memo(() => {
-  const [open, setOpen] = useState(true);
+interface IRecordModal {
+  typeGame: IRecordCardDataItem['typeGame'];
+}
+
+export const RecordModal: FC<IRecordModal> = React.memo(({ typeGame }) => {
+  const [open, setOpen] = useState(false);
 
   const openModal = () => {
     setOpen(true);
@@ -16,18 +24,22 @@ export const RecordModal = React.memo(() => {
     setOpen(false);
   };
   return (
-    <Dialog open={open} className={styles.recordDialog} onClose={closeModal}>
-      <DialogTitle className={styles.header}>
-        <span className={styles.title}>{'С друзьями'}</span>
+    <>
+      <Button label={'Записаться'} onClick={openModal} className={styles.submitBtn} />
 
-        <IconButton onClick={closeModal}>
-          <CloseIcon className={styles.closeIcon} />
-        </IconButton>
-      </DialogTitle>
-      <DialogContent>
-        <Form />
-      </DialogContent>
-      <DialogActions></DialogActions>
-    </Dialog>
+      <Dialog open={open} className={styles.recordDialog} onClose={closeModal}>
+        <DialogTitle className={styles.header}>
+          <span className={styles.title}>{'С друзьями'}</span>
+
+          <IconButton onClick={closeModal}>
+            <CloseIcon className={styles.closeIcon} />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <Form typeGame={typeGame} />
+        </DialogContent>
+        <DialogActions></DialogActions>
+      </Dialog>
+    </>
   );
 });
