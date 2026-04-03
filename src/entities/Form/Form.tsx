@@ -1,18 +1,30 @@
 'use client';
 
-import { useMemo } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import { useCallback, useMemo } from 'react';
+import { useForm, Controller, useWatch } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Checkbox, FormControlLabel, TextField } from '@mui/material';
+import { Checkbox, FormControlLabel, Select, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { ruRU } from '@mui/x-date-pickers/locales';
 import dayjs, { type Dayjs } from 'dayjs';
+import 'dayjs/locale/ru';
 import type { FC } from 'react';
 import styles from './Form.module.scss';
 import { Button, MaskInput } from '@/shared';
 import { useFetchRecordMutation, type RecordSliceState } from '@/store/recordSlice/recordSlice';
 import { getNextSundayDate } from '@/utils/getNextSundayDate';
+import { SelectTime } from '@/shared/ui/SelectTime/SelectTime';
+
+/** Часы включительно; минуты всегда :00 */
+const MIN_GAME_HOUR = 10;
+const MAX_GAME_HOUR = 22;
+
+/** По воскресеньям закрыт слот [14:00; 16:00) — недоступны 14:00 и 15:00 */
+function isSundayBlockedHour(hour: number) {
+  return hour === 14 || hour === 15;
+}
 
 function createFormSchema(typeGame: 'free' | 'friend') {
   const base = z.object({
@@ -37,8 +49,19 @@ function createFormSchema(typeGame: 'free' | 'friend') {
 
   return base.extend({
     date: z.unknown().refine((val): val is Dayjs => dayjs.isDayjs(val) && val.isValid(), { message: 'Укажите дату' }),
-    time: z.unknown().refine((val): val is Dayjs => dayjs.isDayjs(val) && val.isValid(), { message: 'Укажите время' }),
+    time: z.string({ required_error: 'Поле обязательно' }),
   });
+  /*   .superRefine((data, ctx) => {
+      if (!dayjs.isDayjs(data.date) || !data.time) return;
+
+      if (data.date.day() === 0 && isSundayBlockedHour(h)) {
+        ctx.addIssue({
+          code: 'custom',
+          message: 'По воскресеньям недоступно время с 14:00 до 16:00',
+          path: ['time'],
+        });
+      }
+    });*/
 }
 
 type FormData = z.infer<ReturnType<typeof createFormSchema>>;
@@ -63,7 +86,7 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
       return {
         ...base,
         date: dayjs(),
-        time: dayjs().hour(12).minute(0).second(0).millisecond(0),
+        time: '10:00',
       };
     }
     return base;
@@ -80,7 +103,28 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
     resolver: zodResolver(formSchema),
   });
 
+  const watchedDate = useWatch({ control, name: 'date' });
+
+  const shouldDisableTime = useCallback(
+    (value: Dayjs, view: 'hours' | 'minutes' | 'seconds') => {
+      if (view === 'minutes') {
+        return value.minute() !== 0;
+      }
+      if (view !== 'hours') {
+        return false;
+      }
+
+      const gameDate = watchedDate && dayjs.isDayjs(watchedDate) && watchedDate.isValid() ? watchedDate : null;
+      if (gameDate?.day() === 0 && isSundayBlockedHour(value.hour())) {
+        return true;
+      }
+      return false;
+    },
+    [watchedDate],
+  );
+
   const onSubmit = (data: FormData) => {
+    console.log('data = ', data);
     const payload: RecordSliceState = {
       typeGame,
       name: data.name,
@@ -91,7 +135,7 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
 
     if (typeGame === 'friend' && 'date' in data && 'time' in data && 'rent' in data) {
       payload.date = data.date.format('DD.MM.YYYY');
-      payload.time = data.time.format('HH:mm');
+      payload.time = data.time;
     }
 
     triggerCount(payload);
@@ -104,7 +148,11 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
+    <LocalizationProvider
+      dateAdapter={AdapterDayjs}
+      adapterLocale="ru"
+      localeText={ruRU.components.MuiLocalizationProvider.defaultProps.localeText}
+    >
       <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
         <TextField
           {...register('name')}
@@ -146,9 +194,8 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
               helperText={errors.countPeople?.message}
               autoComplete="off"
               onChange={(e) => {
-                // Оставляем только цифры
-                const numericValue = e.target.value.replace(/\D/g, '');
-                field.onChange(+numericValue);
+                const digits = e.target.value.replace(/\D/g, '');
+                field.onChange(digits === '' ? '' : +digits);
               }}
               inputProps={{
                 inputMode: 'numeric', // для мобильных клавиатур
@@ -188,18 +235,34 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
               name="time"
               control={control}
               render={({ field }) => (
-                <TimePicker
+                <SelectTime label={'Время'} value={field.value} onChange={field.onChange} />
+                /*  <TimePicker
                   label="Время"
+                  ampm={false}
+                  views={['hours']}
+                  openTo="hours"
+                  format="HH:00"
+                  minutesStep={60}
+                  minTime={minSelectableTime}
+                  maxTime={maxSelectableTime}
+                  shouldDisableTime={shouldDisableTime}
                   value={field.value}
-                  onChange={field.onChange}
+                  onChange={(v) => {
+                    if (!v) {
+                      field.onChange(v);
+                      return;
+                    }
+                    field.onChange(v.minute(0).second(0).millisecond(0));
+                  }}
                   slotProps={{
                     textField: {
                       variant: 'outlined',
                       error: !!errors.time,
                       helperText: errors.time?.message as string | undefined,
+                      inputProps: { readOnly: true },
                     },
                   }}
-                />
+                />*/
               )}
             />
           </>

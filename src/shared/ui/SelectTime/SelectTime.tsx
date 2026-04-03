@@ -1,7 +1,13 @@
-import { FormControl, InputLabel, MenuItem, Select as SelectMUI, SelectChangeEvent } from '@mui/material';
-import { useState } from 'react';
+import { FormControl, InputLabel, MenuItem, Select as SelectMUI, SelectChangeEvent, SelectProps } from '@mui/material';
+import { FC } from 'react';
 
-export const Select = ({ label = 'Время' }) => {
+interface ISelectTime extends Omit<SelectProps, 'onChange' | 'value'> {
+  label?: string;
+  value: string;
+  onChange: (value: string) => void;
+}
+
+export const SelectTime: FC<ISelectTime> = ({ label = 'Время', value, onChange }) => {
   const time = [
     { value: '10:00', label: '10:00', disable: false },
     { value: '11:00', label: '11:00', disable: false },
@@ -18,10 +24,10 @@ export const Select = ({ label = 'Время' }) => {
     { value: '22:00', label: '22:00', disable: false },
   ];
 
-  const [value, setValue] = useState('');
+  //const [value, setValue] = useState('');
 
   const handleChange = (event: SelectChangeEvent) => {
-    setValue(event.target.value as string);
+    onChange(event.target.value as string);
   };
 
   return (
