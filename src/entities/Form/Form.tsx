@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -16,6 +16,7 @@ import { Button, MaskInput } from '@/shared';
 import { useFetchRecordMutation, type RecordSliceState } from '@/store/recordSlice/recordSlice';
 import { getNextSundayDate } from '@/utils/getNextSundayDate';
 import { SelectTime } from '@/shared/ui/SelectTime/SelectTime';
+import { IHolidaysData } from '@/shared/lib/getHolidays/types';
 
 function createFormSchema(typeGame: 'free' | 'friend') {
   const base = z.object({
@@ -53,10 +54,18 @@ type FormData = z.infer<ReturnType<typeof createFormSchema>>;
 
 interface FormProps {
   typeGame: 'free' | 'friend';
+  holidays: IHolidaysData;
+  modalOpen: boolean;
 }
 
-export const Form: FC<FormProps> = ({ typeGame }) => {
+export const Form: FC<FormProps> = ({ typeGame, modalOpen }) => {
   const [triggerCount] = useFetchRecordMutation();
+
+  useEffect(() => {
+    if (!modalOpen) {
+      reset(); // очищаем форму
+    }
+  }, [modalOpen]);
 
   const sundayDateRef = useRef(getNextSundayDate());
 
@@ -92,10 +101,13 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
     reset,
     control,
     formState: { errors },
+    watch,
   } = useForm<FormData>({
     defaultValues,
     resolver: zodResolver(formSchema),
   });
+
+  const selectedDay = watch('date'); // отслеживаем изменения поля date
 
   const onSubmit = (data: FormData) => {
     const payload: RecordSliceState = {
@@ -116,12 +128,6 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
     console.log('payload = ', payload);
 
     triggerCount(payload);
-
-    handleReset();
-  };
-
-  const handleReset = () => {
-    reset();
   };
 
   return (
@@ -212,7 +218,14 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
             <Controller
               name="time"
               control={control}
-              render={({ field }) => <SelectTime label={'Время'} value={field.value} onChange={field.onChange} />}
+              render={({ field }) => (
+                <SelectTime
+                  label={'Время'}
+                  value={field.value}
+                  onChange={field.onChange}
+                  day={selectedDay.format('DD.MM.YYYY')}
+                />
+              )}
             />
           </>
         )}

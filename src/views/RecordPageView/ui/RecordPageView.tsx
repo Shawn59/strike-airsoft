@@ -3,8 +3,11 @@ import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import { RecordCardList } from '@/widgets/RecordCard/lib/RecordCardData';
 import { RecordCard } from '@/widgets/RecordCard/ui/RecordCard';
 import { RecordModal } from '@/entities';
+import { getHolidays } from '@/shared/lib/getHolidays/getHolidays';
 
-export const RecordPageView = () => {
+export const RecordPageView = async () => {
+  const holidays = await getHolidays();
+
   return (
     <div className={styles.recordPageView}>
       <ContentLayout>
@@ -17,7 +20,7 @@ export const RecordPageView = () => {
                 <div key={item.id} className={styles.recordCardBlock}>
                   <RecordCard data={item} />
 
-                  <RecordModal typeGame={item.typeGame} />
+                  <RecordModal typeGame={item.typeGame} holidays={holidays} />
                 </div>
               );
             })}

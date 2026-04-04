@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
-import { PrismaClient } from '@prisma/client';
 import dayjs from 'dayjs';
 import { statusList } from '@/shared/api/baseService';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
 const { internalServerError } = statusList;
 const status: globalThis.ResponseInit = { status: internalServerError };
 const { VERSION, ADMIN_MAIL, ADMIN_MAIL_PASS, BUSINESS_MAIL, BUSINESS_MAIL_PASS } = process.env;
@@ -31,7 +30,7 @@ export async function POST(req: NextRequest) {
     if (date && time && prisma?.record) {
       const [day, month, year] = date.split('.').map(Number);
       const [hours, minutes] = time.split(':').map(Number);
-      const dateTime = new Date(year, month - 1, day, hours, minutes);
+      const dateTime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
 
       if (isNaN(dateTime.getTime())) {
         return NextResponse.json({ message: 'Некорректная дата или время' }, status);
@@ -39,6 +38,9 @@ export async function POST(req: NextRequest) {
 
       const startTime = new Date(dateTime.getTime() - 2 * 60 * 60 * 1000);
       const endTime = new Date(dateTime.getTime() + 2 * 60 * 60 * 1000);
+
+      console.log('startTime = ', startTime);
+      console.log('endTime = ', endTime);
 
       const existingRecords = await prisma.record.findMany({
         where: {

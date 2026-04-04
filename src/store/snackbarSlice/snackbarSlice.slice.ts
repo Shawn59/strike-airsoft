@@ -1,8 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import type { ISnackbarState } from './snackbarSlice.slice.types';
-import type { PayloadAction } from '@reduxjs/toolkit/dist';
 import uuid from 'react-uuid';
-import { constants } from '../../constants';
+import { constants } from '@/constants/constants';
 
 const initialState: ISnackbarState = {
   id: '',
@@ -13,7 +12,7 @@ const initialState: ISnackbarState = {
 };
 
 const snackbarSlice = createSlice({
-  name: constants.reduxSlice.snackbar,
+  name: constants.REDUX_SLICE.snackbarSlice,
   initialState,
   reducers: {
     showSnackbar: (state, action: PayloadAction<Omit<ISnackbarState, 'open' | 'id'>>) => {

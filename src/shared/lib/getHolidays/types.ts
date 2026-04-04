@@ -1,15 +1,15 @@
-import {Prisma} from ".prisma/client";
+import { Prisma } from '.prisma/client';
 import RecordCreateManyInput = Prisma.RecordCreateManyInput;
 
 interface DateObjectType {
-  date: string
-  status: boolean
+  date: string;
+  status: boolean;
 }
 
-interface ReturnType {
-  holidays: DateObjectType[]
-  time: string
-  record: RecordCreateManyInput[]
+export interface IHolidaysData {
+  holidays: DateObjectType[];
+  time: string;
+  record: RecordCreateManyInput[];
 }
 
-export type GetObjectType = () => Promise<ReturnType>
+export type GetObjectType = () => Promise<IHolidaysData>;

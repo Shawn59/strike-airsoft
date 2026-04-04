@@ -6,5 +6,6 @@ export const constants = {
     reviewsSlice: 'reviewsSlice',
     recordSlice: 'recordSlice',
     modalRecordSlice: 'modalRecordSlice',
+    snackbarSlice: 'snackbarSlice',
   } as const,
 };

@@ -7,12 +7,14 @@ import CloseIcon from '@mui/icons-material/Close';
 import { Form } from '@/entities/Form/Form';
 import { Button } from '@/shared';
 import { IRecordCardDataItem } from '@/widgets/RecordCard/ui/RecordCard.types';
+import { IHolidaysData } from '@/shared/lib/getHolidays/types';
 
 interface IRecordModal {
   typeGame: IRecordCardDataItem['typeGame'];
+  holidays: IHolidaysData;
 }
 
-export const RecordModal: FC<IRecordModal> = React.memo(({ typeGame }) => {
+export const RecordModal: FC<IRecordModal> = React.memo(({ typeGame, holidays }) => {
   const [open, setOpen] = useState(false);
 
   const openModal = () => {
@@ -35,7 +37,7 @@ export const RecordModal: FC<IRecordModal> = React.memo(({ typeGame }) => {
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Form key={typeGame} typeGame={typeGame} />
+          <Form key={typeGame} modalOpen={open} typeGame={typeGame} holidays={holidays} />
         </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>
