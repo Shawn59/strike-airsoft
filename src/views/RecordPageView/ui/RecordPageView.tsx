@@ -2,10 +2,7 @@ import styles from './RecordPageView.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import { RecordCardList } from '@/widgets/RecordCard/lib/RecordCardData';
 import { RecordCard } from '@/widgets/RecordCard/ui/RecordCard';
-import dynamic from 'next/dynamic';
 import { RecordModal } from '@/entities';
-
-//const RecordModal = dynamic(() => import('@/entities').then((mod) => mod.RecordModal), { ssr: false });
 
 export const RecordPageView = () => {
   return (

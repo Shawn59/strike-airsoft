@@ -1,11 +1,11 @@
 'use client';
 
-import { useCallback, useMemo } from 'react';
-import { useForm, Controller, useWatch } from 'react-hook-form';
+import { useMemo, useRef } from 'react';
+import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Checkbox, FormControlLabel, Select, TextField } from '@mui/material';
-import { DatePicker, LocalizationProvider, TimePicker } from '@mui/x-date-pickers';
+import { Checkbox, FormControlLabel, TextField } from '@mui/material';
+import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { ruRU } from '@mui/x-date-pickers/locales';
 import dayjs, { type Dayjs } from 'dayjs';
@@ -17,15 +17,6 @@ import { useFetchRecordMutation, type RecordSliceState } from '@/store/recordSli
 import { getNextSundayDate } from '@/utils/getNextSundayDate';
 import { SelectTime } from '@/shared/ui/SelectTime/SelectTime';
 
-/** Часы включительно; минуты всегда :00 */
-const MIN_GAME_HOUR = 10;
-const MAX_GAME_HOUR = 22;
-
-/** По воскресеньям закрыт слот [14:00; 16:00) — недоступны 14:00 и 15:00 */
-function isSundayBlockedHour(hour: number) {
-  return hour === 14 || hour === 15;
-}
-
 function createFormSchema(typeGame: 'free' | 'friend') {
   const base = z.object({
     name: z.string().min(1, 'Поле ФИО обязательно'),
@@ -33,14 +24,14 @@ function createFormSchema(typeGame: 'free' | 'friend') {
       .string()
       .min(1, 'Укажите телефон')
       .regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите номер полностью в формате +7 (xxx) xxx-xx-xx'),
-    countPeople: z
-      .number({
-        required_error: 'Поле обязательно',
-        invalid_type_error: 'Введите число',
-      })
-      .min(8, 'Минимум 8 человек')
-      .max(16, 'Максимум 16 человек'),
+    countPeople: z.coerce
+      .number()
+      .refine((val) => !isNaN(val), { message: 'Поле обязательно' })
+      .min(1, 'Минимум 1 человек')
+      .max(40, 'Максимум 40 человек'),
     rent: z.boolean(),
+    date: z.string(),
+    time: z.string(),
   });
 
   if (typeGame === 'free') {
@@ -50,18 +41,12 @@ function createFormSchema(typeGame: 'free' | 'friend') {
   return base.extend({
     date: z.unknown().refine((val): val is Dayjs => dayjs.isDayjs(val) && val.isValid(), { message: 'Укажите дату' }),
     time: z.string({ required_error: 'Поле обязательно' }),
+    countPeople: z.coerce
+      .number()
+      .refine((val) => !isNaN(val), { message: 'Поле обязательно' })
+      .min(8, 'Минимум 8 человек')
+      .max(16, 'Максимум 16 человек'),
   });
-  /*   .superRefine((data, ctx) => {
-      if (!dayjs.isDayjs(data.date) || !data.time) return;
-
-      if (data.date.day() === 0 && isSundayBlockedHour(h)) {
-        ctx.addIssue({
-          code: 'custom',
-          message: 'По воскресеньям недоступно время с 14:00 до 16:00',
-          path: ['time'],
-        });
-      }
-    });*/
 }
 
 type FormData = z.infer<ReturnType<typeof createFormSchema>>;
@@ -73,22 +58,31 @@ interface FormProps {
 export const Form: FC<FormProps> = ({ typeGame }) => {
   const [triggerCount] = useFetchRecordMutation();
 
+  const sundayDateRef = useRef(getNextSundayDate());
+
+  const nextDay = dayjs().startOf('day').add(1, 'day');
+
   const formSchema = useMemo(() => createFormSchema(typeGame), [typeGame]);
 
   const defaultValues = useMemo((): FormData => {
     const base = {
       name: '',
       phone: '',
-      countPeople: 8,
+      countPeople: 1,
       rent: false,
+      date: sundayDateRef.current.day,
+      time: sundayDateRef.current.time,
     };
+
     if (typeGame === 'friend') {
       return {
         ...base,
-        date: dayjs(),
-        time: '10:00',
+        date: nextDay,
+        time: '',
+        countPeople: 8,
       };
     }
+
     return base;
   }, [typeGame]);
 
@@ -103,40 +97,23 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
     resolver: zodResolver(formSchema),
   });
 
-  const watchedDate = useWatch({ control, name: 'date' });
-
-  const shouldDisableTime = useCallback(
-    (value: Dayjs, view: 'hours' | 'minutes' | 'seconds') => {
-      if (view === 'minutes') {
-        return value.minute() !== 0;
-      }
-      if (view !== 'hours') {
-        return false;
-      }
-
-      const gameDate = watchedDate && dayjs.isDayjs(watchedDate) && watchedDate.isValid() ? watchedDate : null;
-      if (gameDate?.day() === 0 && isSundayBlockedHour(value.hour())) {
-        return true;
-      }
-      return false;
-    },
-    [watchedDate],
-  );
-
   const onSubmit = (data: FormData) => {
-    console.log('data = ', data);
     const payload: RecordSliceState = {
       typeGame,
       name: data.name,
       phone: data.phone,
-      countPeople: data.countPeople,
+      countPeople: +data.countPeople,
       rent: data.rent,
+      date: data.date,
+      time: data.time,
     };
 
-    if (typeGame === 'friend' && 'date' in data && 'time' in data && 'rent' in data) {
+    if (typeGame === 'friend' && 'date' in data) {
       payload.date = data.date.format('DD.MM.YYYY');
       payload.time = data.time;
     }
+
+    console.log('payload = ', payload);
 
     triggerCount(payload);
 
@@ -195,7 +172,7 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
               autoComplete="off"
               onChange={(e) => {
                 const digits = e.target.value.replace(/\D/g, '');
-                field.onChange(digits === '' ? '' : +digits);
+                field.onChange(+digits || '');
               }}
               inputProps={{
                 inputMode: 'numeric', // для мобильных клавиатур
@@ -206,7 +183,7 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
 
         {typeGame === 'free' && (
           <span>
-            {'Дата: '} {getNextSundayDate()}
+            {'Дата и время игры: '} {`${sundayDateRef.current.day} ${sundayDateRef.current.time}`}
           </span>
         )}
 
@@ -219,6 +196,7 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
                 <DatePicker
                   label="Дата"
                   value={field.value}
+                  minDate={dayjs().startOf('day').add(1, 'day')} //след день
                   onChange={field.onChange}
                   slotProps={{
                     textField: {
@@ -234,36 +212,7 @@ export const Form: FC<FormProps> = ({ typeGame }) => {
             <Controller
               name="time"
               control={control}
-              render={({ field }) => (
-                <SelectTime label={'Время'} value={field.value} onChange={field.onChange} />
-                /*  <TimePicker
-                  label="Время"
-                  ampm={false}
-                  views={['hours']}
-                  openTo="hours"
-                  format="HH:00"
-                  minutesStep={60}
-                  minTime={minSelectableTime}
-                  maxTime={maxSelectableTime}
-                  shouldDisableTime={shouldDisableTime}
-                  value={field.value}
-                  onChange={(v) => {
-                    if (!v) {
-                      field.onChange(v);
-                      return;
-                    }
-                    field.onChange(v.minute(0).second(0).millisecond(0));
-                  }}
-                  slotProps={{
-                    textField: {
-                      variant: 'outlined',
-                      error: !!errors.time,
-                      helperText: errors.time?.message as string | undefined,
-                      inputProps: { readOnly: true },
-                    },
-                  }}
-                />*/
-              )}
+              render={({ field }) => <SelectTime label={'Время'} value={field.value} onChange={field.onChange} />}
             />
           </>
         )}
