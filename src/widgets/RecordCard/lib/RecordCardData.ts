@@ -8,7 +8,7 @@ export const RecordCardList: IRecordCardDataItem[] = [
     title: '«Одиночная» открытая игра',
     description:
       'Открытая игра проводится каждое воскресенье в 14:00 для игроков, у которых не получается набрать свою компанию для игры.',
-    countPeople: 'до 16',
+    countPeople: 'неограниченно',
     durationGame: '2 часа',
   },
   {

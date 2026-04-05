@@ -37,7 +37,7 @@ export const RecordModal: FC<IRecordModal> = React.memo(({ typeGame, holidays })
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Form key={typeGame} modalOpen={open} typeGame={typeGame} holidays={holidays} />
+          <Form key={typeGame} modalOpen={open} typeGame={typeGame} holidays={holidays} closeModal={closeModal} />
         </DialogContent>
         <DialogActions></DialogActions>
       </Dialog>

@@ -1,4 +1,12 @@
-import { FormControl, InputLabel, MenuItem, Select as SelectMUI, SelectChangeEvent, SelectProps } from '@mui/material';
+import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select as SelectMUI,
+  SelectChangeEvent,
+  SelectProps,
+} from '@mui/material';
 import { FC, useRef, useState } from 'react';
 import dayjs from 'dayjs';
 import { getSundays } from '@/shared/lib/getHolidays/getHolidays';
@@ -8,6 +16,7 @@ interface ISelectTime extends Omit<SelectProps, 'onChange' | 'value'> {
   value: string;
   onChange: (value: string) => void;
   day: string;
+  helperText?: string;
 }
 
 const TIME_LIST = [
@@ -29,7 +38,7 @@ const TIME_LIST = [
 const sundays = getSundays();
 const sundaysDisabledTime = TIME_LIST.slice(2, 7);
 
-export const SelectTime: FC<ISelectTime> = ({ label = 'Время', value, onChange, day }) => {
+export const SelectTime: FC<ISelectTime> = ({ label = 'Время', value, onChange, day, error, helperText }) => {
   const [open, setOpen] = useState(false);
   const nowTimeRef = useRef('');
   const nowDayRef = useRef('');
@@ -60,6 +69,7 @@ export const SelectTime: FC<ISelectTime> = ({ label = 'Время', value, onCha
         value={value}
         label={label}
         onChange={handleChange}
+        error={error}
       >
         {TIME_LIST.map((time) => {
           const isNextDayDisable = nowTimeRef.current > time && day === nowDayRef.current;
@@ -72,6 +82,8 @@ export const SelectTime: FC<ISelectTime> = ({ label = 'Время', value, onCha
           );
         })}
       </SelectMUI>
+
+      {helperText && <FormHelperText error={true}>{helperText}</FormHelperText>}
     </FormControl>
   );
 };

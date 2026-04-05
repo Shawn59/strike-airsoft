@@ -21,18 +21,13 @@ export const recordSlice = createApi({
   endpoints: (build) => ({
     fetchRecord: build.mutation({
       async queryFn(_arg: RecordSliceState, _queryApi, _extraOptions, baseQuery) {
-        console.log('_arg = ', _arg);
         const resultData = { ..._arg };
-
-        /* const asyncData = await getAsyncData({ name, data });*/
 
         return baseQuery({
           url: '',
           body: {
             data: {
               ...resultData,
-              /* time: asyncData.time && `${asyncData.time.format('HH')}:00`,
-              date: asyncData.date && asyncData.date.format('DD.MM.YYYY'),*/
             },
           },
           method: 'POST',

@@ -23,11 +23,12 @@ export async function POST(req: NextRequest) {
   try {
     const { data } = await req.json();
 
-    console.log('data = ', data);
+    // console.log('data = ', data);
 
     const { name: nameCommand, typeGame, phone, countPeople, standard, vip, date, rent, time } = data;
 
-    if (date && time && prisma?.record) {
+    //TODO: запись в бд
+    if (typeGame !== 'free' && date && time && prisma?.record) {
       const [day, month, year] = date.split('.').map(Number);
       const [hours, minutes] = time.split(':').map(Number);
       const dateTime = new Date(Date.UTC(year, month - 1, day, hours, minutes));
@@ -39,10 +40,11 @@ export async function POST(req: NextRequest) {
       const startTime = new Date(dateTime.getTime() - 2 * 60 * 60 * 1000);
       const endTime = new Date(dateTime.getTime() + 2 * 60 * 60 * 1000);
 
-      console.log('startTime = ', startTime);
-      console.log('endTime = ', endTime);
+      /*    console.log('dateTime = ', dateTime);
+      console.log('endTime = ', endTime);*/
 
-      const existingRecords = await prisma.record.findMany({
+      //проверка на существования записи по дате
+      const existingRecords = await prisma?.record?.findMany({
         where: {
           date: {
             gte: startTime,
@@ -67,16 +69,19 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ message: 'Server configuration error' }, { status: 500 });
     }
 
-    /*let transporter = nodemailer.createTransport({
+    let transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: cred,
-    });*/
+    });
 
-    let transporter = nodemailer.createTransport({
+    /* const transporter = nodemailer.createTransport({
       host: 'smtp.ethereal.email',
       port: 587,
-      auth: cred,
-    });
+      auth: {
+        user: 'guillermo76@ethereal.email',
+        pass: '4kqSGg7sRzgmjFJzrN',
+      },
+    });*/
 
     await transporter.sendMail({
       from: cred.user,
@@ -93,7 +98,7 @@ export async function POST(req: NextRequest) {
       `,
     });
 
-    return NextResponse.json({ message: 'Email sent successfully' });
+    return NextResponse.json({ message: 'Запись успешно выполнена!!!' });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: 'Error sending email' }, status);

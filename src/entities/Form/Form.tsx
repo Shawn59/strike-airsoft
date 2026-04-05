@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Checkbox, FormControlLabel, TextField } from '@mui/material';
+import { Checkbox, CircularProgress, FormControlLabel, TextField } from '@mui/material';
 import { DatePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { ruRU } from '@mui/x-date-pickers/locales';
@@ -20,14 +20,14 @@ import { IHolidaysData } from '@/shared/lib/getHolidays/types';
 
 function createFormSchema(typeGame: 'free' | 'friend') {
   const base = z.object({
-    name: z.string().min(1, 'Поле ФИО обязательно'),
+    name: z.string().min(1, 'Введите имя или название команды!'),
     phone: z
       .string()
-      .min(1, 'Укажите телефон')
+      .min(1, 'Введите телефон!')
       .regex(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Введите номер полностью в формате +7 (xxx) xxx-xx-xx'),
     countPeople: z.coerce
       .number()
-      .refine((val) => !isNaN(val), { message: 'Поле обязательно' })
+      .refine((val) => !isNaN(val), { message: 'Введите количество!' })
       .min(1, 'Минимум 1 человек')
       .max(40, 'Максимум 40 человек'),
     rent: z.boolean(),
@@ -41,10 +41,10 @@ function createFormSchema(typeGame: 'free' | 'friend') {
 
   return base.extend({
     date: z.unknown().refine((val): val is Dayjs => dayjs.isDayjs(val) && val.isValid(), { message: 'Укажите дату' }),
-    time: z.string({ required_error: 'Поле обязательно' }),
+    time: z.string().min(1, 'Выберите время!'),
     countPeople: z.coerce
       .number()
-      .refine((val) => !isNaN(val), { message: 'Поле обязательно' })
+      .refine((val) => !isNaN(val), { message: 'Введите количество!' })
       .min(8, 'Минимум 8 человек')
       .max(16, 'Максимум 16 человек'),
   });
@@ -56,10 +56,11 @@ interface FormProps {
   typeGame: 'free' | 'friend';
   holidays: IHolidaysData;
   modalOpen: boolean;
+  closeModal: () => void;
 }
 
-export const Form: FC<FormProps> = ({ typeGame, modalOpen }) => {
-  const [triggerCount] = useFetchRecordMutation();
+export const Form: FC<FormProps> = ({ typeGame, modalOpen, closeModal }) => {
+  const [triggerCount, { isLoading }] = useFetchRecordMutation();
 
   useEffect(() => {
     if (!modalOpen) {
@@ -109,8 +110,19 @@ export const Form: FC<FormProps> = ({ typeGame, modalOpen }) => {
 
   const selectedDay = watch('date'); // отслеживаем изменения поля date
 
+  const sendForm = async (payloadFormData: RecordSliceState) => {
+    try {
+      await triggerCount(payloadFormData).unwrap();
+      //успех
+
+      closeModal();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const onSubmit = (data: FormData) => {
-    const payload: RecordSliceState = {
+    const payloadFormData: RecordSliceState = {
       typeGame,
       name: data.name,
       phone: data.phone,
@@ -121,13 +133,11 @@ export const Form: FC<FormProps> = ({ typeGame, modalOpen }) => {
     };
 
     if (typeGame === 'friend' && 'date' in data) {
-      payload.date = data.date.format('DD.MM.YYYY');
-      payload.time = data.time;
+      payloadFormData.date = data.date.format('DD.MM.YYYY');
+      payloadFormData.time = data.time;
     }
 
-    console.log('payload = ', payload);
-
-    triggerCount(payload);
+    sendForm(payloadFormData);
   };
 
   return (
@@ -223,7 +233,9 @@ export const Form: FC<FormProps> = ({ typeGame, modalOpen }) => {
                   label={'Время'}
                   value={field.value}
                   onChange={field.onChange}
-                  day={selectedDay.format('DD.MM.YYYY')}
+                  day={selectedDay ? selectedDay?.format('DD.MM.YYYY') : ''}
+                  error={!!errors.time}
+                  helperText={errors.time?.message}
                 />
               )}
             />
@@ -241,7 +253,7 @@ export const Form: FC<FormProps> = ({ typeGame, modalOpen }) => {
           )}
         />
 
-        <Button label={'Отправить'} type="submit" />
+        <Button label={isLoading ? <CircularProgress /> : 'Отправить'} type="submit" disabled={isLoading} />
       </form>
     </LocalizationProvider>
   );

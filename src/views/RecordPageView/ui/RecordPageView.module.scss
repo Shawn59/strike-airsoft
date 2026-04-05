@@ -43,4 +43,16 @@
       }
     }
   }
+
+  .rule {
+    margin-top: 48px;
+    color: $text-primary;
+    text-align: center;
+    max-width: 1200px;
+    align-self: center;
+
+    a {
+      color: $orange-1;
+    }
+  }
 }

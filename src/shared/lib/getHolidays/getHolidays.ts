@@ -7,18 +7,18 @@ export const getHolidays: GetObjectType = async () => {
 
   // 1. Получаем данные о праздниках (здесь тоже возможна ошибка)
   let holidaysString = '';
-  try {
+  /* try {
     const response = await fetch(`https://isdayoff.ru/api/getdata?year=${currentYear}&cc=ru&pre=0&covid=0&sd=0`);
     holidaysString = await response.text();
   } catch (fetchError) {
     console.error('Ошибка загрузки праздников:', fetchError);
     holidaysString = '0'.repeat(365); // fallback: все дни рабочие
-  }
+  }*/
 
   // 2. Получаем данные из БД с обработкой ошибки
   let records = [];
   try {
-    records = await prisma.record.findMany();
+    records = await prisma?.record?.findMany();
   } catch (dbError) {
     console.error('Ошибка доступа к базе данных:', dbError);
     // Не падаем, возвращаем пустой массив
