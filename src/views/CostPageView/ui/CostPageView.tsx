@@ -1,6 +1,7 @@
 import styles from './CostPageView.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import { costData } from '@/views/CostPageView/lib/costData';
+import { Button } from '@/shared';
 
 export const CostPageView = async () => {
   return (
@@ -39,6 +40,10 @@ export const CostPageView = async () => {
               <li>{'Сертификат: 20% всем Выбрать можно только одну скидку!'}</li>
             </ul>
             <p>{'Выбрать можно только одну скидку!'}</p>
+          </div>
+
+          <div className={styles.btnRecordContainer}>
+            <Button className={styles.btnRecord} label={'Записаться'} href={'/record'} />
           </div>
         </div>
       </ContentLayout>

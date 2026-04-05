@@ -1,6 +1,7 @@
+'use client';
+
 import * as React from 'react';
 import { IMaskInput } from 'react-imask';
-import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 import { FC } from 'react';

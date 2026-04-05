@@ -147,5 +147,15 @@
         }
       }
     }
+
+    .btnRecordContainer {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+
+      .btnRecord {
+        width: 300px;
+      }
+    }
   }
 }

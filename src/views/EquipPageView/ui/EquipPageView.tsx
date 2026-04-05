@@ -3,6 +3,7 @@ import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import Image from 'next/image';
 import classNames from 'classnames';
 import { Button } from '@/shared/ui/Button/Button';
+import Link from 'next/link';
 
 export const EquipPageView = async () => {
   return (
