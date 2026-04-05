@@ -1,13 +1,12 @@
 import { Metadata } from 'next';
-import { RecordPageView } from '@/views';
+import { CostPageView } from '@/views';
 
 export const metadata: Metadata = {
-  title: 'CounterStrikeBall - Запись',
-  description: 'Записаться на игру',
-  metadataBase: new URL('https://www.counterstrikeball.ru'),
+  title: 'CounterStrikeBall - Стоимость',
+  description: 'Стоимость и скидки на игру',
   alternates: {
-    canonical: '/record',
+    canonical: '/cost',
   },
 };
 
-export default RecordPageView;
+export default CostPageView;

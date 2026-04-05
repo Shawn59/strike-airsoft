@@ -1,7 +1,7 @@
 import { actionShowSnackbar } from '@/store/snackbarSlice/snackbarSlice';
-import { Middleware } from 'redux';
+import { Middleware, UnknownAction } from 'redux';
 
-export const statusMiddleware: Middleware = (store) => (next) => (action) => {
+export const statusMiddleware: Middleware = (store) => (next) => (action: any) => {
   if (action?.payload) {
     const isRejected = action?.type?.endsWith('/rejected');
     const isFulfilled = action?.type?.endsWith('/fulfilled');

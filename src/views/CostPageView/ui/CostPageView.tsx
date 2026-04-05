@@ -1,37 +1,45 @@
-import styles from './RecordPageView.module.scss';
+import styles from './CostPageView.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
-import { RecordCardList } from '@/widgets/RecordCard/lib/RecordCardData';
-import { RecordCard } from '@/widgets/RecordCard/ui/RecordCard';
-import { RecordModal } from '@/entities';
-import { getHolidays } from '@/shared/lib/getHolidays/getHolidays';
-import Link from 'next/link';
+import { costData } from '@/views/CostPageView/lib/costData';
 
-export const RecordPageView = async () => {
-  const holidays = await getHolidays();
-
+export const CostPageView = async () => {
   return (
-    <div className={styles.recordPageView}>
+    <div className={styles.costPageView}>
       <ContentLayout>
-        <h1 className={styles.title}>{'Выбор за тобой!'}</h1>
-
+        <h1 className={styles.title}>{'Стоимость!'}</h1>
         <div className={styles.content}>
-          <div className={styles.recordCardsContainer}>
-            {RecordCardList.map((item) => {
-              return (
-                <div key={item.id} className={styles.recordCardBlock}>
-                  <RecordCard data={item} />
+          <div className={styles.priceTable}>
+            <div className={styles.row}>
+              {costData.headers.map((item, index) => {
+                return (
+                  <div key={index} className={styles.headerDesk}>
+                    {item}
+                  </div>
+                );
+              })}
+            </div>
 
-                  <RecordModal typeGame={item.typeGame} holidays={holidays} />
+            {costData.cells.map((item, index) => {
+              return (
+                <div className={styles.row} key={index}>
+                  <div className={styles.headerMob}>{costData.headers[index]}</div>
+                  <div className={styles.item}>{item.name}</div>
+                  <div className={styles.item}>{item.price}</div>
+                  <div className={styles.item}>{item.priceHol}</div>
                 </div>
               );
             })}
           </div>
-        </div>
 
-        <div className={styles.rule}>
-          Перед игрой необходимо заполнить анкету, поэтому мы рекомендуем приходить за 30—40 минут до начала игры. Если
-          по каким—то причинам у вас не получается посетить игру, просим предупреждать нас за 24 часа до начала игры{' '}
-          <Link href={'/contact'}>{'в сообщениях группы, либо по телефону.'}</Link>
+          <div className={styles.sale}>
+            <p className={styles.saleTitle}>{'Скидки:'}</p>
+            <ul>
+              <li>{'Именинники: 20% имениннику и по 10% каждому другу'}</li>
+              <li>{'Студенты: 10% при предъявлении студенческого билета'}</li>
+              <li>{'Сертификат: 20% всем Выбрать можно только одну скидку!'}</li>
+            </ul>
+            <p>{'Выбрать можно только одну скидку!'}</p>
+          </div>
         </div>
       </ContentLayout>
     </div>
