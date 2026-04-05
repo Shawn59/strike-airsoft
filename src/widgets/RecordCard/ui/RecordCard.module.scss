@@ -1,0 +1,82 @@
+.recordCard {
+  background: $primary-bg;
+  border-radius: 20px;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  @include mobile {
+    border-radius: 12px;
+  }
+
+  .imageContainer {
+    position: relative;
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  .recordContent {
+    padding: 12px 24px 24px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    height: 100%;
+    transition: all 0.2s ease-in-out;
+
+    @include tablet {
+      gap: 18px;
+      padding: 18px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-family: $font-MontserratFont;
+      font-weight: bold;
+      transition: all 0.2s ease-in-out;
+
+      @include tablet {
+        font-size: 18px;
+      }
+    }
+
+    .description {
+      font-size: 16px;
+      font-family: $font-MontserratFont;
+      line-height: 22px;
+      transition: all 0.2s ease-in-out;
+
+      @include tablet {
+        font-size: 14px;
+      }
+    }
+
+    .footer {
+      margin-top: auto;
+      padding-top: 12px;
+      font-family: $font-MontserratFont;
+      line-height: 24px;
+      font-size: 16px;
+      transition: all 0.2s ease-in-out;
+
+      @include tablet {
+        font-size: 14px;
+        line-height: 20px;
+      }
+
+      .footerTitle {
+        font-weight: bold;
+      }
+
+      .footerValue {
+        color: $orange-3;
+        margin-left: 8px;
+      }
+    }
+  }
+}

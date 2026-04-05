@@ -6,6 +6,7 @@ import { MainLayout } from '@widgets';
 import { StyledEngineProvider } from '@mui/material';
 import StoreProvider from '@/app/StoreProvider';
 import Head from 'next/head';
+import { SnackbarAtom } from '@/shared/ui/Snackbar/Snackbar';
 
 export default function RootLayout({
   children,
@@ -24,6 +25,8 @@ export default function RootLayout({
         <StyledEngineProvider injectFirst>
           <StoreProvider>
             <MainLayout>{children}</MainLayout>
+
+            <SnackbarAtom />
           </StoreProvider>
         </StyledEngineProvider>
       </body>

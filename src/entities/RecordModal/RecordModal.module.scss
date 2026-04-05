@@ -1,0 +1,43 @@
+.submitBtn {
+  margin-top: 24px;
+  width: max-content;
+
+  @include mobile {
+    margin-top: 16px;
+  }
+}
+
+.recordDialog {
+  :global(.MuiPaper-root) {
+    position: relative;
+    background-color: #ffffff;
+    background-clip: padding-box;
+    border: 0;
+    border-radius: 8px;
+    box-shadow:
+      0 6px 16px 0 rgba(0, 0, 0, 0.08),
+      0 3px 6px -4px rgba(0, 0, 0, 0.12),
+      0 9px 28px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: auto;
+    width: 550px;
+    padding-top: 12px;
+  }
+
+  :global(.MuiDialogContent-root) {
+    padding: 20px 24px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .title {
+      @extend %h3-title;
+    }
+
+    .closeIcon {
+      font-size: 32px;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+model Record {
+  id   Int      @id @default(autoincrement())
+  date DateTime @db.Timestamptz()
+
+  @@map("RECORD")
+}
