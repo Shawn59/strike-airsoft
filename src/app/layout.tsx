@@ -20,6 +20,12 @@ export default function RootLayout({
         <link rel="preconnect" href="https://vkuser.net" crossOrigin />
         <link rel="dns-prefetch" href="https://vk.com" />
         <link rel="dns-prefetch" href="https://vkuser.net" />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="CounterStrikeBall | Страйкбол | Airsoft | Пермь" />
+        <meta property="og:description" content="Пермский клуб страйкбола и игровая площадка для фанатов CS: GO." />
+        <meta property="og:url" content="https://www.counterstrikeball.ru" />
+        <meta property="og:image" content="https://www.counterstrikeball.ru/opengraph.jpg" />
       </Head>
       <body>
         <StyledEngineProvider injectFirst>
