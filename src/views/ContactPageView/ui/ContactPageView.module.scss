@@ -5,10 +5,6 @@
   background-repeat: no-repeat;
   min-height: calc(100vh - 72px);
 
-  @include tablet {
-    min-height: calc(100vh - 48px);
-  }
-
   .title {
     @extend %h1-title;
     text-align: center;
@@ -29,7 +25,7 @@
       max-width: 1000px;
       height: 80dvh;
       min-height: 400px;
-      max-height: 800px;
+      max-height: 600px;
 
       @include tablet {
         width: 50dvw;
