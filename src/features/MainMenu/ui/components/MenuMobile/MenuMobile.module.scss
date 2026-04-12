@@ -2,10 +2,6 @@
   .icon {
     color: $orange-1;
     font-size: 36px;
-
-    @include mobile {
-      font-size: 26px;
-    }
   }
 
   .btn {

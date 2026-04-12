@@ -1,6 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
+  output: 'standalone',
   sassOptions: {
     // includePaths: [path.join(__dirname, 'src/styles')],
     prependData: `@use "src/styles/variables" as *; @use "src/styles/mixins" as *; @use "src/styles/extends" as *;`,

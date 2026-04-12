@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
     const { name: nameCommand, typeGame, phone, countPeople, standard, vip, date, rent, time } = data;
 
     //TODO: запись в бд
+    //свободная игра не записывается в БД
     if (typeGame !== 'free' && date && time && prisma?.record) {
       const [day, month, year] = date.split('.').map(Number);
       const [hours, minutes] = time.split(':').map(Number);

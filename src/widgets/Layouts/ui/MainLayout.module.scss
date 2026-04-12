@@ -4,10 +4,5 @@
   .content {
     margin-top: 72px;
     height: calc(100vh - 72px);
-
-    @include mobile {
-      margin-top: 48px;
-      height: calc(100vh - 48px);
-    }
   }
 }

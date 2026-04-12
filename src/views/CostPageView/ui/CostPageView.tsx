@@ -2,6 +2,7 @@ import styles from './CostPageView.module.scss';
 import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import { costData } from '@/views/CostPageView/lib/costData';
 import { Button } from '@/shared';
+import classNames from 'classnames';
 
 export const CostPageView = async () => {
   return (
@@ -9,7 +10,7 @@ export const CostPageView = async () => {
       <ContentLayout>
         <h1 className={styles.title}>{'Стоимость!'}</h1>
         <div className={styles.content}>
-          <div className={styles.priceTable}>
+          <div className={styles.priceTableDesk}>
             <div className={styles.row}>
               {costData.headers.map((item, index) => {
                 return (
@@ -23,13 +24,48 @@ export const CostPageView = async () => {
             {costData.cells.map((item, index) => {
               return (
                 <div className={styles.row} key={index}>
-                  <div className={styles.headerMob}>{costData.headers[index]}</div>
                   <div className={styles.item}>{item.name}</div>
                   <div className={styles.item}>{item.price}</div>
                   <div className={styles.item}>{item.priceHol}</div>
                 </div>
               );
             })}
+          </div>
+
+          <div className={styles.priceTableMobile}>
+            <div className={styles.tableTitle}>{costData.headers[1]}</div>
+
+            <div className={styles.row}>
+              <div className={styles.item}>{`${costData.cells[0].name} экипировка`}</div>
+              <div className={classNames(styles.item, styles.price)}>{costData.cells[0].price}</div>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.item}>{`${costData.cells[1].name} экипировка`}</div>
+              <div className={classNames(styles.item, styles.price)}>{costData.cells[1].price}</div>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.item}>{`${costData.cells[2].name} экипировка`}</div>
+              <div className={classNames(styles.item, styles.price)}>{costData.cells[2].price}</div>
+            </div>
+
+            <div className={styles.tableTitle}>{costData.headers[2]}</div>
+
+            <div className={styles.row}>
+              <div className={styles.item}>{`${costData.cells[0].name} экипировка`}</div>
+              <div className={classNames(styles.item, styles.price)}>{costData.cells[0].priceHol}</div>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.item}>{`${costData.cells[1].name} экипировка`}</div>
+              <div className={classNames(styles.item, styles.price)}>{costData.cells[1].priceHol}</div>
+            </div>
+
+            <div className={styles.row}>
+              <div className={styles.item}>{`${costData.cells[2].name} экипировка`}</div>
+              <div className={classNames(styles.item, styles.price)}>{costData.cells[2].priceHol}</div>
+            </div>
           </div>
 
           <div className={styles.sale}>
