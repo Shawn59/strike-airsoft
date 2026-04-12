@@ -1,6 +1,6 @@
 'use client';
 
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import styles from './MenuMobile.module.scss';
 import { Box, Button, SwipeableDrawer, List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -28,7 +28,7 @@ export const MenuMobile: FC<IMenu> = ({ data }) => {
       </Button>
 
       <SwipeableDrawer open={open} onClose={closeMenu} className={styles.menuMobileContent}>
-        <Box sx={{ width: 220 }} role="presentation" onClick={closeMenu}>
+        <Box sx={{ width: 300 }} role="presentation" onClick={closeMenu}>
           <List>
             <Link className={styles.logoContainer} href={'/'}>
               <Image src={'/logo.svg'} alt={'логотип кс'} width={56} height={56} />
