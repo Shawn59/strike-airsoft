@@ -7,6 +7,7 @@ import { StyledEngineProvider } from '@mui/material';
 import StoreProvider from '@/app/StoreProvider';
 import { SnackbarAtom } from '@/shared/ui/Snackbar/Snackbar';
 import { Metadata } from 'next';
+import { YandexMetricaProvider, standardYMInitParameters } from '@artginzburg/next-ym';
 
 export const metadata: Metadata = {
   title: 'CounterStrikeBall | Страйкбол | Airsoft | Пермь',
@@ -26,19 +27,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const ymInitParams = {
+    ...standardYMInitParameters,
+    webvisor: true, // вебвизор
+    ecommerce: 'dataLayer', // если используется электронная торговля
+    accurateTrackBounce: true,
+  };
+
   return (
     <html lang="ru">
-      <head>
-        <link rel="preconnect" href="https://vk.com" />
-        <link rel="preconnect" href="https://vkuser.net" />
-        <link rel="dns-prefetch" href="https://vk.com" />
-        <link rel="dns-prefetch" href="https://vkuser.net" />
-      </head>
       <body>
         <StyledEngineProvider injectFirst>
           <StoreProvider>
-            <MainLayout>{children}</MainLayout>
-
+            <MainLayout>
+              <YandexMetricaProvider initParameters={ymInitParams}>{children}</YandexMetricaProvider>
+            </MainLayout>
             <SnackbarAtom />
           </StoreProvider>
         </StyledEngineProvider>
