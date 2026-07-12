@@ -3,17 +3,13 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import styles from './SwiperReviews.module.scss';
-import { useEffect } from 'react';
 import { ReviewCard } from '@/widgets/ReviewCard/ui/ReviewCard';
-import { useFetchReviewsMutation } from '@/store/reviewsSlice/reviewsSlice';
+import { useFetchReviewsQuery } from '@/store/reviewsSlice/reviewsSlice';
 import { SwiperReviewsSkeletons } from '@/widgets/SwiperReviews/ui/components/SwiperReviewsSkeletons/SwiperReviewsSkeletons';
+import { useEffect } from 'react';
 
 export const SwiperReviews = () => {
-  const [trigger, { data: reviews }] = useFetchReviewsMutation();
-
-  useEffect(() => {
-    trigger();
-  }, [trigger]);
+  const { data: reviews } = useFetchReviewsQuery();
 
   if (!reviews) {
     return <SwiperReviewsSkeletons />;
@@ -25,8 +21,8 @@ export const SwiperReviews = () => {
         modules={[Autoplay, Pagination, Navigation]}
         autoplay={{
           delay: 3000,
-          disableOnInteraction: false, // не отключать автоплей после ручного переключения
-          pauseOnMouseEnter: true, // пауза при наведении мыши
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
         pagination={{ clickable: true }}
         spaceBetween={32}
