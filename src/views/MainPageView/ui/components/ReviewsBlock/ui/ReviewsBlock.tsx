@@ -8,7 +8,7 @@ export const ReviewsBlock: FC = () => {
     <div className={styles.reviewsBlock}>
       <ContentLayout isSwiper>
         <div>
-          <h1 className={styles.title}>{'Отзывы '}</h1>
+          <h1 className={styles.title}>{'Отзывы'}</h1>
 
           <DynamicSwiperReviews />
         </div>

@@ -28,7 +28,7 @@ export const MenuMobile: FC<IMenu> = ({ data }) => {
       </Button>
 
       <SwipeableDrawer open={open} onClose={closeMenu} className={styles.menuMobileContent}>
-        <Box sx={{ width: 300 }} role="presentation" onClick={closeMenu}>
+        <Box sx={{ width: 240 }} role="presentation" onClick={closeMenu}>
           <List>
             <Link className={styles.logoContainer} href={'/'}>
               <Image src={'/logo.svg'} alt={'логотип кс'} width={56} height={56} />

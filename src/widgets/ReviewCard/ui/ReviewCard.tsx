@@ -28,8 +28,10 @@ export const ReviewCard: FC<IReviewCard> = ({ data }) => {
       <div className={styles.logoContainer}>
         <img
           loading={'lazy'}
-          alt={data.from === '2GIS' ? 'Логотип 2GIS' : 'Логотип Яндекс карт'}
-          src={data.from === '2GIS' ? '/review/2GIS.svg' : '/review/yandexMaps.svg'}
+          /* alt={data.source_name === '2GIS' ? 'Логотип 2GIS' : 'Логотип Яндекс карт'}
+          src={data.source_name === '2GIS' ? '/review/2GIS.svg' : '/review/yandexMaps.svg'}*/
+          alt={'Логотип Яндекс карт'}
+          src={'/review/yandexMaps.svg'}
         />
       </div>
     </div>

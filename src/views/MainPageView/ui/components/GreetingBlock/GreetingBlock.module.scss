@@ -1,9 +1,11 @@
 .greetingBlock {
-  background-image: url('/bg/backgroundMain.jpg');
+  background-image: url('/bg/backgroundRecordAndCostText.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   height: 800px;
+  position: relative;
+  overflow: hidden;
 
   @include mobile {
     background-position: right;
@@ -16,6 +18,7 @@
 
   .longLogo {
     margin-top: auto;
+    z-index: 1;
 
     @include tablet {
       width: 420px;
@@ -23,6 +26,20 @@
 
     @include mobile {
       width: 320px;
+    }
+  }
+
+  .soldersImg {
+    width: 1200px;
+    height: auto;
+    position: absolute;
+    bottom: 0;
+    right: -138px;
+
+    @include mobile {
+      width: 600px;
+      bottom: 0;
+      right: -90px;
     }
   }
 }
