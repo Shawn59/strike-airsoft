@@ -3,7 +3,11 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100vh - 72px);
+  min-height: 100vh;
+
+  @include tablet {
+    min-height: calc(100vh - 72px);
+  }
 
   .title {
     @extend %h1-title;

@@ -3,7 +3,11 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100vh - 72px);
+  min-height: 100vh;
+
+  @include tablet {
+    min-height: calc(100vh - 72px);
+  }
 
   .title {
     @extend %h1-title;
@@ -51,7 +55,7 @@
 
       .row {
         display: grid;
-        grid-template-columns: 1fr 320px 320px;
+        grid-template-columns: 1fr 1fr 1fr;
 
         @include tablet {
           grid-template-columns: minmax(260px, 1fr) 1fr 1fr;
@@ -64,7 +68,7 @@
           transition: all 0.3s;
           border: 0;
           letter-spacing: 4px;
-          line-height: 0.58;
+          line-height: 0.98;
           font-family: $font-CSFont;
           font-size: 36px;
           padding: 12px 24px;

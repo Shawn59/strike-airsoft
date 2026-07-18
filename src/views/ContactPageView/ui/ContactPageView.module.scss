@@ -5,6 +5,10 @@
   background-repeat: no-repeat;
   min-height: 100vh;
 
+  @include tablet {
+    min-height: calc(100vh - 72px);
+  }
+
   .title {
     @extend %h1-title;
     text-align: center;
@@ -21,8 +25,8 @@
     }
 
     .mapContainer {
-      width: 60dvw;
-      max-width: 1000px;
+      width: 40dvw;
+      max-width: 800px;
       height: 80dvh;
       min-height: 400px;
       max-height: 600px;

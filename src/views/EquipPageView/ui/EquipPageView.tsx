@@ -3,7 +3,6 @@ import { ContentLayout } from '@/widgets/Layouts/ui/ContentLayout';
 import Image from 'next/image';
 import classNames from 'classnames';
 import { Button } from '@/shared/ui/Button/Button';
-import Link from 'next/link';
 
 export const EquipPageView = async () => {
   return (
@@ -20,7 +19,7 @@ export const EquipPageView = async () => {
                 <Image src={'/equip/counter.png'} alt={'Спецназовец стандар'} fill />
               </div>
 
-              <ul className={classNames(styles.descriptionBlock, styles.left)}>
+              <ul className={styles.descriptionBlock}>
                 <li>Привод M4 CQB / AK-105</li>
                 <li>Тактический шлем</li>
                 <li>Защитные очки</li>
@@ -40,7 +39,7 @@ export const EquipPageView = async () => {
                 <Image src={'/equip/terr.png'} alt={'Терр Vip'} fill />
               </div>
 
-              <ul className={classNames(styles.descriptionBlock, styles.right)}>
+              <ul className={styles.descriptionBlock}>
                 <li>Бронежилет</li>
                 <li>Тактический пояс с двумя дополнительными магазинами</li>
               </ul>

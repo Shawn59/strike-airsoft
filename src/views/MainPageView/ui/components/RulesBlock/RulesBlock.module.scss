@@ -7,8 +7,12 @@
 
     .cardContainer {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 20px;
+
+      & > :last-child {
+        grid-column: 1 / -1;
+      }
 
       @include tablet {
         grid-template-columns: 1fr;
