@@ -1,28 +1,31 @@
 //@use './src/styles/variables' as *;
 
 .mainMenu {
-  z-index: 999;
+  height: 100%;
   position: fixed;
-  top: 0;
-  background: $black-80-bg;
-  height: 72px;
-  display: flex;
-  width: 100%;
+  left: 0;
+  z-index: 999;
+  width: 220px;
+  padding: 20px 20px 20px 0;
 
   @include tablet {
-    display: grid;
+    background: $black-801-bg;
+    top: 0;
+    left: unset;
+    height: 72px;
     width: 100%;
+    display: grid;
     align-items: center;
     grid-template-columns: 1fr 1fr 1fr;
     padding: 0 20px;
   }
 
   .logoContainer {
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     transition: all ease 0.3s;
+    border-bottom: 1px solid #ffffff59;
+    width: 80px;
+    display: flex;
+    justify-content: center;
 
     @include tablet {
       display: none;
@@ -78,6 +81,7 @@
 
   .menuContainerDesk {
     display: flex;
+    flex-direction: column;
 
     @include tablet {
       display: none;
@@ -88,5 +92,27 @@
     @include desktop {
       display: none;
     }
+  }
+}
+
+.mainMenuDivider {
+  position: fixed;
+  height: 100%;
+  background: $black-801-bg;
+  width: 80px;
+  z-index: 99;
+
+  &:after {
+    position: absolute;
+    left: 0;
+    background: $black-801-bg;
+    content: '';
+    height: 100%;
+    right: -120px;
+    opacity: 0.4;
+  }
+
+  @include tablet {
+    display: none;
   }
 }

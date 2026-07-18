@@ -1,5 +1,7 @@
 .menuDesk {
   display: flex;
+  flex-direction: column;
+  margin-top: 40px;
 
   @include tablet {
     display: none;
@@ -7,7 +9,7 @@
 
   .itemContainer {
     display: flex;
-    gap: 8px;
+    gap: 16px;
 
     &:hover {
       .itemLabel {

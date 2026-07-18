@@ -5,6 +5,7 @@
   background-repeat: no-repeat;
   height: 800px;
   position: relative;
+  overflow: hidden;
 
   @include mobile {
     background-position: right;
@@ -29,14 +30,16 @@
   }
 
   .soldersImg {
+    width: 1200px;
+    height: auto;
     position: absolute;
     bottom: 0;
-    right: 0;
-    height: auto;
-    width: 880px;
+    right: -138px;
 
     @include mobile {
-      width: 420px;
+      width: 600px;
+      bottom: 0;
+      right: -90px;
     }
   }
 }

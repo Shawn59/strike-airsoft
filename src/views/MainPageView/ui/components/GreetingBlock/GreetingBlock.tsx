@@ -14,7 +14,7 @@ export const GreetingBlock = () => {
 
         <Image src={'/bigLogo.svg'} className={styles.longLogo} alt={'логотип кс 2'} width={455} height={68} />
         <Image
-          src={'/solders/two.png'}
+          src={'/solders/ks-two.png'}
           className={styles.soldersImg}
           alt={'логотип кс 2'}
           width={880}
