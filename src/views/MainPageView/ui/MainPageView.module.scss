@@ -3,4 +3,9 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+  padding-left: 220px;
+
+  @include tablet {
+    padding-left: 0;
+  }
 }
