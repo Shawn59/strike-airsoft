@@ -16,7 +16,8 @@ export const EquipPageView = async () => {
 
             <div className={styles.info}>
               <div className={styles.contentImgContainer}>
-                <Image src={'/equip/counter.png'} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ks-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ks-solder.png'} alt={'Спецназовец стандар'} fill />
               </div>
 
               <ul className={styles.descriptionBlock}>
@@ -28,6 +29,11 @@ export const EquipPageView = async () => {
                 <li>Тактический костюм</li>
                 <li>Тактические перчатки</li>
               </ul>
+
+              <div className={styles.contentImgContainer}>
+                <Image src={'/equip/ter-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ter-solder.png'} alt={'Спецназовец стандар'} fill />
+              </div>
             </div>
           </div>
 
@@ -36,13 +42,26 @@ export const EquipPageView = async () => {
 
             <div className={styles.info}>
               <div className={styles.contentImgContainer}>
-                <Image src={'/equip/terr.png'} alt={'Терр Vip'} fill />
+                <Image src={'/equip/ks-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ks-solder-vip.png'} alt={'Спецназовец стандар'} fill />
               </div>
 
               <ul className={styles.descriptionBlock}>
-                <li>Бронежилет</li>
-                <li>Тактический пояс с двумя дополнительными магазинами</li>
+                <li>Привод M4 CQB / AK-105</li>
+                <li>Тактический шлем</li>
+                <li>Защитные очки</li>
+                <li>Балаклава</li>
+                <li>Маска для лица</li>
+                <li>Тактический костюм</li>
+                <li>Тактические перчатки</li>
+                <li className={styles.orange}>Бронежилет</li>
+                <li className={styles.orange}>Тактический пояс с двумя дополнительными магазинами</li>
               </ul>
+
+              <div className={styles.contentImgContainer}>
+                <Image src={'/equip/ter-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ter-solder-vip.png'} alt={'Спецназовец стандар'} fill />
+              </div>
             </div>
           </div>
         </div>
