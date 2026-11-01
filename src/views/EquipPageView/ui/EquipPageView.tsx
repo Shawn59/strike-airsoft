@@ -17,7 +17,7 @@ export const EquipPageView = async () => {
             <div className={styles.info}>
               <div className={styles.contentImgContainer}>
                 <Image src={'/equip/ks-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
-                <Image src={'/equip/ks-solder.png'} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ks-solder.png'} alt={'Спецназовец стандар'} fill priority />
               </div>
 
               <ul className={styles.descriptionBlock}>
@@ -32,7 +32,7 @@ export const EquipPageView = async () => {
 
               <div className={styles.contentImgContainer}>
                 <Image src={'/equip/ter-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
-                <Image src={'/equip/ter-solder.png'} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ter-solder.png'} alt={'Спецназовец стандар'} fill priority />
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@ export const EquipPageView = async () => {
             <div className={styles.info}>
               <div className={styles.contentImgContainer}>
                 <Image src={'/equip/ks-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
-                <Image src={'/equip/ks-solder-vip.png'} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ks-solder-vip.png'} alt={'Спецназовец стандар'} fill priority />
               </div>
 
               <ul className={styles.descriptionBlock}>
@@ -60,7 +60,7 @@ export const EquipPageView = async () => {
 
               <div className={styles.contentImgContainer}>
                 <Image src={'/equip/ter-logo.png'} className={styles.logo} alt={'Спецназовец стандар'} fill />
-                <Image src={'/equip/ter-solder-vip.png'} alt={'Спецназовец стандар'} fill />
+                <Image src={'/equip/ter-solder-vip.png'} alt={'Спецназовец стандар'} fill priority />
               </div>
             </div>
           </div>

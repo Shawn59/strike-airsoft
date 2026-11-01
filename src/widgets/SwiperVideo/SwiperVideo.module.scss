@@ -15,7 +15,11 @@
 .contentContainer {
   gap: 32px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+
+  @include mobile {
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  }
 
   .slide {
     width: 100%;

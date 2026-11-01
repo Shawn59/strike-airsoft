@@ -1,7 +1,11 @@
 'use client';
 
 import styles from './SwiperVideo.module.scss';
-import { IFrame } from '@/shared';
+//import { IFrame } from '@/shared';
+import dynamic from 'next/dynamic';
+const IFrame = dynamic(() => import('@/shared').then((mod) => mod.IFrame), {
+  ssr: false,
+});
 
 const videoList = [
   'https://vk.com/video_ext.php?oid=-220256056&id=456239018&hd=2&autoplay=0',
@@ -29,19 +33,5 @@ export const SwiperVideo = () => {
         </div>
       ))}
     </div>
-    /*<Swiper
-      modules={[Pagination, Navigation]}
-      pagination={{ clickable: true }}
-      navigation
-      slidesPerView={'auto'}
-      className={styles.swiperContainer}
-      spaceBetween={24}
-    >
-      {videoList.map((video, index) => (
-        <SwiperSlide key={index} className={styles.slide}>
-          <IFrame src={video} />
-        </SwiperSlide>
-      ))}
-    </Swiper>*/
   );
 };
